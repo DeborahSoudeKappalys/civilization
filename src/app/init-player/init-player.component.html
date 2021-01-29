@@ -1,0 +1,30 @@
+<div class="overlay" *ngIf="!launched">
+    <section class="initPlayer">
+        <img src="../../assets/gameUiMenu.svg" alt="">
+        <div class="content">
+            <h1>Création joueur {{ numberOfPlayer }}</h1>
+            <div>
+                <p>Choisissez votre nom : </p>
+                <input type="text" [formControl]="nom" ngDefaultControl placeholder="Votre nom">
+                <p>Choisissez votre titre de noblesse : </p>
+                <input type="text" [formControl]="titre" ngDefaultControl placeholder="Votre titre">
+                <p>Choisissez votre couleur : </p>
+                <div class="buttonsColor">
+                    <button (click)="setColor('4580ff')" class="bleu" *ngIf="numberOfPlayer === 1 || player1Color != '4580ff'" [class.active]="couleur === '4580ff'"></button>
+                    <button (click)="setColor('cc2e2e')"class="rouge" *ngIf="numberOfPlayer === 1 || player1Color != 'cc2e2e'" [class.active]="couleur === 'cc2e2e'"></button>
+                    <button (click)="setColor('45df45')" class="vert"  *ngIf="numberOfPlayer === 1 || player1Color != '45df45'" [class.active]="couleur === '45df45'"></button>
+                    <button (click)="setColor('bdbd30')" class="jaune" *ngIf="numberOfPlayer === 1 || player1Color != 'bdbd30'" [class.active]="couleur === 'bdbd30'"></button>
+                </div>
+                <p>Choisissez votre canton de départ : </p>
+                <div class="buttonsCantons">
+                    <button (click)="chooseCanton(1)" *ngIf="numberOfPlayer === 1 || player1Canton != 1" [class.active]="cantonId === 1">Barentin</button>
+                    <button (click)="chooseCanton(10)" *ngIf="numberOfPlayer === 1 || player1Canton != 10" [class.active]="cantonId === 10">Eu</button>
+                    <button (click)="chooseCanton(32)" *ngIf="numberOfPlayer === 1 || player1Canton != 32" [class.active]="cantonId === 32">Saint-Romain-de-Colbosc</button>
+                </div>
+
+                <button type="submit" class="submit" (click)="createPlayer()">Valider</button>
+
+            </div>
+        </div>
+    </section>
+</div>

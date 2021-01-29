@@ -1,0 +1,117 @@
+div.overlay {
+    background-image: url(../../assets/gothic-pattern-20.jpg);
+    width: 100vw;
+    height: 100vh;
+    position: inherit;
+}
+
+section.initPlayer {
+    position: absolute;
+    top: 10%;
+    z-index: 2;
+    left: 35%;
+
+    .content {
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        text-align: center;
+        font-family: sans-serif;
+        color: #d2a96a;
+    
+
+        h1 {
+            font-family: 'Almendra SC', serif;
+            font-size: 2.5rem;
+        }
+
+        input {
+            background-color: #d2a96a;
+            border: 1px solid #a37f4f;
+            outline: none; 
+            padding: 8px 1rem;
+        }
+
+        button {
+            border-radius: 100px;
+            width: 20px;
+            height: 20px;
+            margin: 0 4px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+
+            &.submit {
+                background-color: #3b3a3a;
+                border-radius: 0;
+                width: initial;
+                height: initial;
+                color: #d2a96a;
+                padding: 8px 1rem;
+                font-size: 1rem;
+                margin-top: 2rem;
+                text-transform: uppercase;
+
+                &:hover {
+                    color: #3b3a3a;
+                    background-color: #d2a96a;
+                }
+            }
+        }
+
+        .buttonsCantons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            button {
+                background-color: #d2a96a;
+                border-radius: 0;
+                width: initial;
+                height: initial;
+                color: #3b3a3a;
+                padding: 4px;
+                font-size: 1rem;
+                margin-top: 4px;
+
+                &:hover {
+                    background-color: #b39059 ;
+                }
+
+                &.active {
+                    background-color: #b39059 ;
+                    border: 1px solid #f7f7f7;
+                }
+                
+            }
+
+        }
+
+        div.buttonsColor {
+            button:hover, button.active{
+                border: 1px #f7f7f7 solid;
+            }
+
+            .bleu {
+                background-color: #4580ff;
+            }
+
+            .rouge {
+                background-color: #cc2e2e;
+            }
+
+            .vert {
+                background-color: #45df45;
+            }
+
+            .jaune {
+                background-color: #bdbd30;
+            }
+        }
+
+    }
+
+    img {
+        width: 27vw;
+    }
+}

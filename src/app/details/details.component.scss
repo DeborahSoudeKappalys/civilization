@@ -1,0 +1,103 @@
+section {
+    width: calc(450px + 2rem);
+    background: #D2A96A;
+    position: absolute;
+    top: 9.5rem;
+    left: 0;
+    font-family: sans-serif;
+    color: #3b3a3a;
+    bottom: 0;
+    text-align: center;
+    border-top: 1px solid #b49058;
+    box-shadow: 7px 0 10px -3px #2c2c2ca6;
+
+    .scroll {
+        background-image: url(../../assets/scroll.JPG);
+        opacity: 0.35;
+        width: calc(450px + 2rem);
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    .content {
+        position: absolute;
+        width: 450px;
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    img {
+        max-width: 80px;
+    }
+
+    h1 {
+        font-family: 'Almendra SC', serif;
+        font-size: 2.5rem;
+        margin: 0;
+    }
+
+    h2 {
+        font-family: 'Almendra SC', serif;
+        font-size: 2rem;
+
+        &.puissance {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &::before {
+                background-image: url("../../assets/crown.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                content: "";
+                display: block;
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
+    }
+
+    ul.ressources {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+
+        p {
+            font-family: "UnifrakturMaguntia", serif;
+            font-size: 2rem;
+            margin: 0;
+        }
+    }
+
+    .conteneur-action {
+        display: flex;
+        flex-direction: column;
+        padding: 0 4rem;
+
+        button {
+            background-color: #d2a96a;
+            border-radius: 0;
+            width: initial;
+            height: initial;
+            color: #3b3a3a;
+            padding: 4px;
+            font-size: 1rem;
+            margin-top: 4px;
+            cursor: pointer;
+            outline: none;
+            border: none;
+
+            &:hover {
+                background-color: #b39059 ;
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+<header>
+    <a href="/initialization">
+        <img src="../../assets/logo_civilization.svg" alt="logo du jeu">
+    </a>
+    <div class="ressources">
+        <img src="../../assets/gameUiRessources.svg" alt="Game UI Ressources">
+
+        <div class="number">
+            <p class="corn"> {{ corn }} </p>
+            <p class="coin"> {{ coin }} </p>
+            <p class="wood"> {{ wood }} </p>
+            <p class="stone"> {{ stone }} </p>
+            <p class="fish"> {{ fish }} </p>
+            <p class="silk"> {{ silk }} </p>
+        </div>
+    </div>
+
+    <div class="turn">
+        <img src="../../assets/ornement.svg" alt="">
+        <h1> {{ turn }} </h1>
+    </div>
+    <div class='players'>
+        <img src="../../assets/ornement.svg" alt="">
+        <div>
+            <div class="player" *ngFor="let player of players" [class.current]="(current - 1) === player.id">
+                <div class="identity">
+                    <p class="name">{{ player.nom }}</p>
+                    <p class="titre">{{ player.titre }}</p>
+                </div>
+                <p class="owner">{{ player.cantons.length }}</p>
+            </div>
+        </div>
+    </div>
+</header>

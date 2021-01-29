@@ -1,0 +1,19 @@
+.map {
+    position: relative;
+    overflow: hidden;
+    outline: none;
+
+    #Seine_Maritime {
+        path {
+            &:hover {
+                fill: #343f3f;
+                cursor: pointer;
+            }
+        }
+    }
+
+    #scene {
+        min-width: 100vw;
+        min-height: auto;
+    }
+}

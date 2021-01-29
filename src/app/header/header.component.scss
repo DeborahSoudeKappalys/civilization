@@ -1,0 +1,151 @@
+header {
+    background-color: #d2a96a;
+    border-bottom: #b39059 solid 1px;
+    display: flex;
+    padding: 1rem;
+    
+    button {
+        background: transparent;
+        border: none;
+        outline: none;
+        float: left;
+        flex: 2;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .ressources {
+        height: 120px;
+        flex: 6;
+
+        img {
+            height: 100%;
+            max-width: 77rem;
+        }
+
+        .number {
+            position: absolute;
+            width: 100%;
+            top: 4.7rem;
+        }
+
+        p {
+            font-family: 'UnifrakturMaguntia';
+            font-size: 1.5rem;
+            position: absolute;
+            color: #3b3a3a;
+        
+            &.corn {
+                left: 3rem;
+            }
+
+            &.coin {
+                left: 12.6rem;
+            }
+            
+            &.wood {
+
+                left: 22rem;
+            }
+
+            &.stone {
+                left: 31.2rem;
+            }
+
+            &.fish {
+
+                left: 40.2rem;
+            }
+
+            &.silk {
+
+                left: 49.5rem;
+            }
+        }
+        
+    }
+
+    .players {
+        flex: 3;
+        display: flex;
+        align-items: center;
+
+        img {
+            margin-right: 8px;
+            max-height: 120px;
+        }
+
+        .player {
+            display: flex;
+            align-items: center;
+            font-family: sans-serif;
+            color: #3b3a3a;
+            font-size: 1rem;
+            justify-content: space-between;
+
+            &:first-child {
+                margin-bottom: 1rem;
+            }
+
+            &::before {
+                content: "";
+                display: block;
+                width: 100px;
+                height: 20px;
+                margin-right: 8px;
+            } 
+
+            &.current
+            {
+                &::before {
+                    background-image: url("../../assets/arrow.svg");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }   
+            }
+
+            .identity {
+                margin-right: 8rem;
+                width: 100%;
+            }
+
+            p {
+                margin: 0;
+
+                &.name, &.owner {
+                    font-family: 'Almendra SC', serif;
+                    font-size: 1.5rem;
+                }
+
+                &.titre {
+                    font-size: 13px;
+                }
+
+
+            }
+        }
+    }
+
+    .turn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        img {
+            margin-right: 8px;
+            max-height: 120px;
+            color: #3b3a3a;
+        }
+
+        h1 {
+            margin: 0 1rem 0 2.5rem;
+
+            &::before {
+                content: "Tours";
+            }
+        }
+    }
+}
