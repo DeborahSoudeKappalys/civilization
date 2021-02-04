@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
   templateUrl: './init-player.component.html',
   styleUrls: ['./init-player.component.scss']
 })
-export class InitPlayerComponent{
+export class InitPlayerComponent {
   nom = new FormControl('');
   titre = new FormControl('');
   couleur: string = "4580ff";
   canton!: Canton;
   cantonId: number = 1;
-  numberOfPlayer: number = 1;
+  numberOfPlayers: number = 1;
   launched = this.jeuService.getLaunched();
   player1Color?: string;
   player1Canton?: number;
@@ -44,9 +44,8 @@ export class InitPlayerComponent{
   }
 
   createPlayer() {
-    let numberOfPlayers = this.jeuService.getNumberOfPlayer();
-    this.setCanton(this.cantonId, (numberOfPlayers+1));
-    let player = new Joueur(numberOfPlayers, this.nom.value, this.titre.value, this.couleur, this.canton);
+    this.setCanton(this.cantonId, (this.numberOfPlayers - 1));
+    let player = new Joueur((this.numberOfPlayers - 1), this.nom.value, this.titre.value, this.couleur, this.canton);
     this.jeuService.addPlayer(player);
 
     let p1 = this.jeuService.getPlayer(0);
@@ -58,12 +57,12 @@ export class InitPlayerComponent{
     this.nom.setValue('');
     this.titre.setValue('');
 
-    if(this.numberOfPlayer === 2) {
+    if(this.numberOfPlayers === 2) {
       this.jeuService.launch();
       this.launched = this.jeuService.getLaunched();
       this.router.navigateByUrl('/game');
     } else {
-      this.numberOfPlayer++;
+      this.numberOfPlayers++;
     }
 
   }
