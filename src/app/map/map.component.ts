@@ -10,7 +10,7 @@ import { JeuService } from '../jeu.service';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements AfterViewInit {
-  @Input() _currentPlayer: number = 1;
+  @Input() _currentPlayer: number = 0;
   @Input('currentPlayer')
   set currentPlayer(id: number) {
     if (id !== this._currentPlayer) {
@@ -25,6 +25,9 @@ export class MapComponent implements AfterViewInit {
 
   currentCantons: Array<string> = [];
   currentColor?: string;
+  selectedCanton?: Canton;
+
+  constructor(private cantonsService: CantonsService, private jeuService: JeuService) { }
 
   ngAfterViewInit() {
     // panzoom(document.querySelector('#scene'));
@@ -42,10 +45,6 @@ export class MapComponent implements AfterViewInit {
 
     this.setCantonColor();
   }
-
-  selectedCanton?: Canton;
-
-  constructor(private cantonsService: CantonsService, private jeuService: JeuService) { }
 
   openCanton(id: number){
     if (this.cantonsService.getCantonById(id) != undefined) {
