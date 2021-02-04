@@ -1,33 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Joueur } from './classes/joueur';
-import { element } from 'protractor';
 import { Canton } from './classes/canton';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JeuService {
   joueurs: Array<Joueur> = [];
+  currentPlayer = new BehaviorSubject(1);
+  turn = new BehaviorSubject(1);
   launched: Boolean = false;
-  currentPlayer: number = 1;
-  turn: number = 1;
 
-    // Ressources
-    corn?: number;
-    coin?: number;
-    wood?: number;
-    stone?: number;
-    fish?: number;
-    silk?: number;
+  // Ressources
+  corn?: number;
+  coin?: number;
+  wood?: number;
+  stone?: number;
+  fish?: number;
+  silk?: number;
 
-  constructor() { }
+  constructor() { 
+    this.currentPlayer.next(0);
+    this.turn.next(1);
+  }
 
   addPlayer(joueur: Joueur){
     this.joueurs.push(joueur);
   }
 
   getPlayer(id: number): Joueur {
-    if(this.joueurs[0].id === id){
+    if(id === 0){
       return this.joueurs[0];
     } else {
       return this.joueurs[1];
@@ -43,7 +46,7 @@ export class JeuService {
   }
 
   getCurrentPlayer() {
-    return this.currentPlayer;
+    return this.currentPlayer.value;
   }
 
   getCurrentCantons() {
@@ -63,10 +66,10 @@ export class JeuService {
   }
 
   nextCurrentPlayer() {
-    if (this.currentPlayer === 1) {
-      this.currentPlayer = 2;
+    if (this.currentPlayer.value === 0) {
+      this.currentPlayer.next(1);
     } else {
-      this.currentPlayer = 1;
+      this.currentPlayer.next(0);
       this.nextTurn();
     } 
 
@@ -82,32 +85,31 @@ export class JeuService {
   }
 
   nextTurn() {
-    this.turn++;
-    this.refreshRessources();
+    this.turn.next(this.turn.value + 1);
   }
 
   getTurn() {
-    return this.turn;
+    return this.turn.value;
   }
 
-  refreshRessources() {
-    this.getPlayers().forEach(joueur => {
-      joueur.cantons.forEach(canton => {
-        let ressourcesJoueur = joueur.ressources;
-        let ressourcesCanton = canton.ressources;
+  addNewRessources() {
+    let joueur = this.joueurs[this.getCurrentPlayer()];
+    
+    joueur.cantons.forEach(canton => {
+      let ressourcesJoueur = joueur.ressources;
+      let ressourcesCanton = canton.ressources;
 
-        if (ressourcesCanton != undefined) {
-          ressourcesCanton.forEach(ressource => {
-            ressource.id;
+      if (ressourcesCanton != undefined) {
+        ressourcesCanton.forEach(ressource => {
+          ressource.id;
 
-            ressourcesJoueur?.forEach(ressourceJ => {
-              if (ressourceJ.id === ressource.id){
-                ressourceJ.quantity += ressource.quantity;
-              }
-            })
-          });          
-        }
-      })
+          ressourcesJoueur?.forEach(ressourceJ => {
+            if (ressourceJ.id === ressource.id){
+              ressourceJ.quantity += ressource.quantity;
+            }
+          })
+        });          
+      }
     });
   }
 
@@ -117,7 +119,7 @@ export class JeuService {
   }
 
   getRessourceValue(idRessource: number) {
-    return this.getPlayers()[this.currentPlayer-1].getRessourceById(idRessource);
+    return this.getPlayers()[this.currentPlayer.value-1].getRessourceById(idRessource);
   }
 
   refresh() {
@@ -127,7 +129,5 @@ export class JeuService {
     this.stone = this.getRessourceValue(4);
     this.fish = this.getRessourceValue(5);
     this.silk = this.getRessourceValue(6);
-
-    this.turn = this.getTurn();
   }
 }
