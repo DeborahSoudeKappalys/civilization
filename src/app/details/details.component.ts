@@ -9,17 +9,15 @@ import { JeuService } from '../jeu.service';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
-
+export class DetailsComponent {
   @Input() canton?: Canton;
   selectedRessource?: Ressources;
-  currentPlayer?: number;
   current: number = 1;
 
-  constructor(private ressourcesService: RessourcesService, private jeuService: JeuService) { }
-
-  ngOnInit(): void {
-    this.currentPlayer = this.jeuService.getCurrentPlayer();
+  constructor(private ressourcesService: RessourcesService, private jeuService: JeuService) { 
+    this.jeuService.currentPlayer.subscribe((value) => {
+      this.current = value;
+    });
   }
 
   displayRessource(id: number){
@@ -31,20 +29,22 @@ export class DetailsComponent implements OnInit {
   }
 
   patienter() {
+    this.jeuService.addNewRessources();
     this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
-    this.jeuService.refreshRessources();
   }
 
   creer() {
-    alert('Nous avons besoin de plus de soldat !');
+    this.jeuService.addNewRessources();
+    this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
   }
 
   attaquer() {
-    alert('Attaquer ! Et que ces terres deviennent notres !');
+    this.jeuService.addNewRessources();
+    this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
   }
 
   deplacer() {
-    alert('eplace tes troupes');
+    this.jeuService.addNewRessources();
+    this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
   }
-
 }

@@ -22,7 +22,7 @@
     <div class='players'>
         <img src="../../assets/ornement.svg" alt="">
         <div>
-            <div class="player" *ngFor="let player of players" [class.current]="(current - 1) === player.id">
+            <div class="player" *ngFor="let player of players" [class.current]="current === player.id">
                 <div class="identity">
                     <p class="name">{{ player.nom }}</p>
                     <p class="titre">{{ player.titre }}</p>

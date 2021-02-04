@@ -6,9 +6,9 @@ import { JeuService } from '../jeu.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Output() sendCurrent: EventEmitter<number> = new EventEmitter();
-  current: number = 1;
+  current: number = 0;
   players = this.jeuService.getPlayers();
 
   // Ressources
@@ -20,35 +20,22 @@ export class HeaderComponent implements OnInit {
   silk?: number;
 
   // Jeu
-  turn: number = 1;
+  turn!: number;
 
-  constructor(private jeuService: JeuService) { }
+  constructor(private jeuService: JeuService) {
+    this.jeuService.currentPlayer.subscribe((value) => {
+      this.current = value;
+      this.corn = this.jeuService.getPlayer(value).getRessourceById(1);
+      this.coin = this.jeuService.getPlayer(value).getRessourceById(2);
+      this.wood = this.jeuService.getPlayer(value).getRessourceById(3);
+      this.stone = this.jeuService.getPlayer(value).getRessourceById(4);
+      this.fish = this.jeuService.getPlayer(value).getRessourceById(5);
+      this.silk = this.jeuService.getPlayer(value).getRessourceById(6);
+      this.turn = this.jeuService.getTurn();
+    });
 
-  ngOnInit(): void {
-    this.current = this.jeuService.getCurrentPlayer();
-    this.corn = this.jeuService.getRessourceValue(1);
-    this.coin = this.jeuService.getRessourceValue(2);
-    this.wood = this.jeuService.getRessourceValue(3);
-    this.stone = this.jeuService.getRessourceValue(4);
-    this.fish = this.jeuService.getRessourceValue(5);
-    this.silk = this.jeuService.getRessourceValue(6);
-    this.refreshMap();
-
-    this.turn = this.jeuService.getTurn();
-
-  }
-
-  getRessourceValue(idRessource: number) {
-    return this.jeuService.getPlayers()[this.current-1].getRessourceById(idRessource);
-  }
-
-  refreshMap()
-  {
-    this.sendCurrent.emit(this.current);
-  }
-
-  nextTurn() {
-    this.turn++;
-    this.jeuService.refreshRessources();
+    this.jeuService.turn.subscribe((value) => {
+      this.turn = value;
+    });
   }
 }
