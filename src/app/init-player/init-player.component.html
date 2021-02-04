@@ -10,10 +10,10 @@
                 <input type="text" [formControl]="titre" ngDefaultControl placeholder="Votre titre">
                 <p>Choisissez votre couleur : </p>
                 <div class="buttonsColor">
-                    <button (click)="setColor('4580ff')" class="bleu" *ngIf="numberOfPlayers === 1 || player1Color != '4580ff'" [class.active]="couleur === '4580ff'"></button>
-                    <button (click)="setColor('cc2e2e')"class="rouge" *ngIf="numberOfPlayers === 1 || player1Color != 'cc2e2e'" [class.active]="couleur === 'cc2e2e'"></button>
-                    <button (click)="setColor('45df45')" class="vert"  *ngIf="numberOfPlayers === 1 || player1Color != '45df45'" [class.active]="couleur === '45df45'"></button>
-                    <button (click)="setColor('bdbd30')" class="jaune" *ngIf="numberOfPlayers === 1 || player1Color != 'bdbd30'" [class.active]="couleur === 'bdbd30'"></button>
+                    <button (click)="chooseColor('4580ff')" class="bleu" *ngIf="numberOfPlayer === 1 || player1Color != '4580ff'" [class.active]="couleur === '4580ff'"></button>
+                    <button (click)="chooseColor('cc2e2e')"class="rouge" *ngIf="numberOfPlayer === 1 || player1Color != 'cc2e2e'" [class.active]="couleur === 'cc2e2e'"></button>
+                    <button (click)="chooseColor('45df45')" class="vert"  *ngIf="numberOfPlayer === 1 || player1Color != '45df45'" [class.active]="couleur === '45df45'"></button>
+                    <button (click)="chooseColor('bdbd30')" class="jaune" *ngIf="numberOfPlayer === 1 || player1Color != 'bdbd30'" [class.active]="couleur === 'bdbd30'"></button>
                 </div>
                 <p>Choisissez votre canton de départ : </p>
                 <div class="buttonsCantons">

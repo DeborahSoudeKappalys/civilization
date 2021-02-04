@@ -24,11 +24,12 @@ export class InitPlayerComponent {
 
   constructor(private cantonsService: CantonsService, private jeuService: JeuService, private router: Router) { }
 
-  ngOnInit(): void {
+  chooseColor(couleur: string){
+    this.couleur = couleur;
   }
 
-  setColor(couleur: string){
-    this.couleur = couleur;
+  chooseCanton(id: number){
+    this.cantonId = id;
   }
 
   setCanton(id: number, idPlayer: number) {
@@ -39,32 +40,35 @@ export class InitPlayerComponent {
     }
   }
 
-  chooseCanton(id: number){
-    this.cantonId = id;
-  }
-
   createPlayer() {
-    this.setCanton(this.cantonId, (this.numberOfPlayers - 1));
-    let player = new Joueur((this.numberOfPlayers - 1), this.nom.value, this.titre.value, this.couleur, this.canton);
-    this.jeuService.addPlayer(player);
+    // Récupération du nombre de joueurs
+    let numberOfPlayers = this.jeuService.getNumberOfPlayer();
 
+    // Assignation Joueur/Canton et Canton/Joueur
+    this.setCanton(this.cantonId, numberOfPlayers);
+
+    // Création du joueur
+    this.jeuService.addPlayer(new Joueur(numberOfPlayers, this.nom.value, this.titre.value, this.couleur, this.canton));
+
+    // Empeche le joueur 2 d'utiliser la même couleur et de posséder le même canton
     let p1 = this.jeuService.getPlayer(0);
     if (p1 != undefined) {
       this.player1Color = p1.getColor();
       this.player1Canton = p1.getStartCanton().id;
     }
 
+    // Nettoyage des saisies
     this.nom.setValue('');
     this.titre.setValue('');
 
-    if(this.numberOfPlayers === 2) {
+    // Lancer le jeu si 2 joueurs sont créés
+    if(this.numberOfPlayer === 2) {
       this.jeuService.launch();
       this.launched = this.jeuService.getLaunched();
       this.router.navigateByUrl('/game');
     } else {
       this.numberOfPlayers++;
     }
-
   }
 
 }
