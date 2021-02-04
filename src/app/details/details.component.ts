@@ -29,7 +29,7 @@ export class DetailsComponent {
   }
 
   patienter() {
-    this.jeuService.addNewRessources();
+    this.jeuService.addNewRessources(2);
     this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
   }
 

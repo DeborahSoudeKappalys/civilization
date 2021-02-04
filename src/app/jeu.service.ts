@@ -92,7 +92,7 @@ export class JeuService {
     return this.turn.value;
   }
 
-  addNewRessources() {
+  addNewRessources(coef = 0) {
     let joueur = this.joueurs[this.getCurrentPlayer()];
     
     joueur.cantons.forEach(canton => {
@@ -105,7 +105,7 @@ export class JeuService {
 
           ressourcesJoueur?.forEach(ressourceJ => {
             if (ressourceJ.id === ressource.id){
-              ressourceJ.quantity += ressource.quantity;
+              ressourceJ.quantity += (ressource.quantity + coef);
             }
           })
         });          
