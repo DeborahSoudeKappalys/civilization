@@ -4,7 +4,7 @@ export class Canton {
     blason?: string;
     description?: string;
     ressources?: Array<{id: number, quantity: number}>;
-    proprio: number = 0;
+    proprio: number = 2;
     voisins?: Array<number>;
     puissance?: number;
 }
