@@ -17,12 +17,16 @@ export class InitPlayerComponent {
   couleur: string = "4580ff";
   canton!: Canton;
   cantonId: number = 1;
-  numberOfPlayers: number = 1;
+  numberOfPlayers!: number;
   launched = this.jeuService.getLaunched();
   player1Color?: string;
   player1Canton?: number;
 
-  constructor(private cantonsService: CantonsService, private jeuService: JeuService, private router: Router) { }
+  constructor(private cantonsService: CantonsService, private jeuService: JeuService, private router: Router) { 
+    this.jeuService.numberOfPlayers.subscribe((value) => {
+      this.numberOfPlayers = value;
+    });
+  }
 
   chooseColor(couleur: string){
     this.couleur = couleur;
@@ -41,14 +45,11 @@ export class InitPlayerComponent {
   }
 
   createPlayer() {
-    // Récupération du nombre de joueurs
-    let numberOfPlayers = this.jeuService.getNumberOfPlayer();
-
     // Assignation Joueur/Canton et Canton/Joueur
-    this.setCanton(this.cantonId, numberOfPlayers);
+    this.setCanton(this.cantonId, this.numberOfPlayers);
 
     // Création du joueur
-    this.jeuService.addPlayer(new Joueur(numberOfPlayers, this.nom.value, this.titre.value, this.couleur, this.canton));
+    this.jeuService.addPlayer(new Joueur(this.numberOfPlayers, this.nom.value, this.titre.value, this.couleur, this.canton));
 
     // Empeche le joueur 2 d'utiliser la même couleur et de posséder le même canton
     let p1 = this.jeuService.getPlayer(0);
@@ -62,12 +63,10 @@ export class InitPlayerComponent {
     this.titre.setValue('');
 
     // Lancer le jeu si 2 joueurs sont créés
-    if(this.numberOfPlayer === 2) {
+    if(this.numberOfPlayers === 2) {
       this.jeuService.launch();
       this.launched = this.jeuService.getLaunched();
       this.router.navigateByUrl('/game');
-    } else {
-      this.numberOfPlayers++;
     }
   }
 
