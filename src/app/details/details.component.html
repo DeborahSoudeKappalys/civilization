@@ -17,10 +17,15 @@
 
         <div class="conteneur-action" *ngIf="canton.proprio === current">
             <h2>Mes actions</h2>
-            <button (click)="patienter()"> Booster mes ressources </button>
-            <button (click)="creer()"> Former des troupes </button>
-            <button (click)="attaquer()"> Attaquer !</button>
-            <button (click)="deplacer()">Déplacer mes troupes</button>
+            <button *ngIf="startMenu" (click)="patienter()"> Booster mes ressources </button>
+            <button *ngIf="startMenu" (click)="creer()"> Former des troupes </button>
+            <button *ngIf="startMenu" (click)="attaquer()"> Attaquer !</button>
+            <button *ngIf="startMenu" (click)="deplacer()">Déplacer mes troupes</button>
+
+            <button *ngIf="createMenu" ng-disabled="!canBuy(1)" (click)="setPuissance(1)"> Infanterie </button>
+            <button *ngIf="createMenu" ng-disabled="!canBuy(5)" (click)="setPuissance(5)"> Cavalerie </button>
+            <button *ngIf="createMenu" ng-disabled="!canBuy(15)" (click)="setPuissance(15)"> Soutien </button>
+            <button *ngIf="createMenu" (click)="setStartMenu()"> Retour </button>
         </div>
     </div>
 </section>
