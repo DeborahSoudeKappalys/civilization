@@ -10,6 +10,7 @@ export class JeuService {
   joueurs: Array<Joueur> = [];
   currentPlayer = new BehaviorSubject(1);
   turn = new BehaviorSubject(1);
+  numberOfPlayers = new BehaviorSubject(0);
   launched: Boolean = false;
 
   // Ressources
@@ -27,6 +28,7 @@ export class JeuService {
 
   addPlayer(joueur: Joueur){
     this.joueurs.push(joueur);
+    this.numberOfPlayers.next(this.numberOfPlayers.value + 1);
   }
 
   getPlayer(id: number): Joueur {
@@ -39,10 +41,6 @@ export class JeuService {
 
   getPlayers(){
     return this.joueurs;
-  }
-
-  getNumberOfPlayer(){
-    return this.joueurs.length;
   }
 
   getCurrentPlayer() {

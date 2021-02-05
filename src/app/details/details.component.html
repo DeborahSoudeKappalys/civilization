@@ -5,7 +5,7 @@
         <h2 class="puissance">{{ canton.puissance }}</h2>
         <img src="{{ canton.blason }}" alt="">
         <p>{{ canton.description }}</p>
-        <i>{{ canton.proprio === current ? "Vous possédez ce canton" : (canton.proprio === -1 ? "Personne ne possède encore ce canton" : "L'adversaire possède ce canton") }}</i>
+        <i>{{ canton.proprio === current ? "Vous possédez ce canton" : (canton.proprio === 99 ? "Personne ne possède encore ce canton" : "L'adversaire possède ce canton") }}</i>
     
         <h2>Ressources</h2>
         <ul class="ressources">
