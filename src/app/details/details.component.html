@@ -22,9 +22,9 @@
             <button *ngIf="startMenu" (click)="attaquer()"> Attaquer !</button>
             <button *ngIf="startMenu" (click)="deplacer()">Déplacer mes troupes</button>
 
-            <button *ngIf="createMenu" ng-disabled="!canBuy(1)" (click)="setPuissance(1)"> Infanterie </button>
-            <button *ngIf="createMenu" ng-disabled="!canBuy(5)" (click)="setPuissance(5)"> Cavalerie </button>
-            <button *ngIf="createMenu" ng-disabled="!canBuy(15)" (click)="setPuissance(15)"> Soutien </button>
+            <button *ngIf="createMenu" [disabled]="!canBuy(1)" (click)="setPuissance(1)"> Infanterie </button>
+            <button *ngIf="createMenu" [disabled]="!canBuy(5)" (click)="setPuissance(5)"> Cavalerie </button>
+            <button *ngIf="createMenu" [disabled]="!canBuy(15)" (click)="setPuissance(15)"> Soutien </button>
             <button *ngIf="createMenu" (click)="setStartMenu()"> Retour </button>
         </div>
     </div>

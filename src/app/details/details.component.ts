@@ -70,19 +70,18 @@ export class DetailsComponent {
     switch (coef) {
       case 1:
         if (
-          this.jeuService.joueurs[this.current].getRessourceById(1) === 5 &&
-          this.jeuService.joueurs[this.current].getRessourceById(3) === 3
+          this.jeuService.joueurs[this.current].getRessourceById(1)! >= 5 &&
+          this.jeuService.joueurs[this.current].getRessourceById(3)! >= 3
         ) {
-          alert(1);
           return true;
         }
         return false;
 
       case 5:
         if (
-          this.jeuService.joueurs[this.current].getRessourceById(2) === 4 &&
-          this.jeuService.joueurs[this.current].getRessourceById(4) === 3 &&
-          this.jeuService.joueurs[this.current].getRessourceById(5) === 2
+          this.jeuService.joueurs[this.current].getRessourceById(2)! >= 4 &&
+          this.jeuService.joueurs[this.current].getRessourceById(4)! >= 3 &&
+          this.jeuService.joueurs[this.current].getRessourceById(5)! >= 2
         ) {
           return true;
         }
@@ -90,9 +89,9 @@ export class DetailsComponent {
 
       case 15:
         if (
-          this.jeuService.joueurs[this.current].getRessourceById(2) === 6 &&
-          this.jeuService.joueurs[this.current].getRessourceById(4) === 5 &&
-          this.jeuService.joueurs[this.current].getRessourceById(6) === 3
+          this.jeuService.joueurs[this.current].getRessourceById(2)! >= 6 &&
+          this.jeuService.joueurs[this.current].getRessourceById(4)! >= 5 &&
+          this.jeuService.joueurs[this.current].getRessourceById(6)! >= 3
         ) {
           return true;
         }
