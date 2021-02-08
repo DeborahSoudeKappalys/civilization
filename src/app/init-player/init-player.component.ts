@@ -37,7 +37,7 @@ export class InitPlayerComponent {
   }
 
   setCanton(id: number, idPlayer: number) {
-    let cantonFound = this.cantonsService.getCantonById(id);
+    let cantonFound = this.jeuService.getCantonById(id);
     if (cantonFound != undefined) {
       cantonFound.proprio = idPlayer;
       this.canton = cantonFound;
