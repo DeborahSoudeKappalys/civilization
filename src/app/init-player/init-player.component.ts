@@ -16,7 +16,7 @@ export class InitPlayerComponent {
   titre = new FormControl('');
   couleur: string = "4580ff";
   canton!: Canton;
-  cantonId: number = 1;
+  cantonId: number = 31;
   numberOfPlayers!: number;
   launched = this.jeuService.getLaunched();
   player1Color?: string;
