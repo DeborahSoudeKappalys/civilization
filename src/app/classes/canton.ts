@@ -7,5 +7,6 @@ export class Canton {
     proprio: number = 2;
     voisins?: Array<number>;
     puissance?: number;
+
 }
 

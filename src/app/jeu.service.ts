@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Joueur } from './classes/joueur';
+import { CANTONS76 } from './mocks/mock-cantons-76';
 import { Canton } from './classes/canton';
 import { BehaviorSubject } from 'rxjs';
 
@@ -12,6 +13,7 @@ export class JeuService {
   turn = new BehaviorSubject(1);
   numberOfPlayers = new BehaviorSubject(0);
   launched: Boolean = false;
+  canton?: Canton;
 
   // Ressources
   corn?: number;
@@ -59,6 +61,7 @@ export class JeuService {
     return tab;
   }
 
+
   getCurrentColor() {
     return this.getPlayer(this.getCurrentPlayer()).couleur;
   }
@@ -72,6 +75,39 @@ export class JeuService {
     } 
 
     return this.currentPlayer;
+  }
+
+  getVoisins(){
+    let cantons = this.joueurs[this.currentPlayer.value].getCantons();
+    let voisins !: Array<number>;
+    cantons.forEach(el => {
+      let voisinsCanton = el.voisins;
+      if (voisinsCanton != undefined) {
+        voisins.concat(voisinsCanton);
+      }
+    })
+
+    var result = voisins.filter(function(elem, index, self) {
+      return index === self.indexOf(elem);
+    })
+
+    return result;
+  }
+
+  illuminateVoisins(id:number){
+    this.colorizeAllCantons();
+    let voisins = this.getCantonById(id)!.voisins;
+    
+    if (voisins != undefined) {
+      voisins.forEach(canton => {
+        let element = document.getElementById('76_' + canton);
+        
+        if (element !== null){
+          element.style.fill = '#ac8a56';
+        }
+      });
+    }
+    this.setCantonColor();
   }
 
   launch(){
@@ -127,5 +163,38 @@ export class JeuService {
     this.stone = this.getRessourceValue(4);
     this.fish = this.getRessourceValue(5);
     this.silk = this.getRessourceValue(6);
+  }
+
+  getCantonById(id: number): Canton|undefined{
+    let cantonIndex: number = -1; 
+    CANTONS76.forEach((canton, index) => {
+      if (canton.id === id) {
+        cantonIndex = index;
+      } 
+    });
+
+    if (cantonIndex != -1) {
+      return CANTONS76[cantonIndex];
+    } else {
+      return undefined;
+    }
+  }
+
+  setCantonColor() {
+    this.getPlayers().forEach(joueur => {
+      joueur.cantons.forEach(canton => {
+        let element = document.getElementById('76_' + canton.id);
+
+        if (element !== null){
+          element.style.fill = '#' + joueur.couleur;
+        }
+      });
+    });
+  }
+
+  colorizeAllCantons() {
+    document.querySelector('#g36')?.querySelectorAll('path').forEach(element => {
+      element.style.fill = '#d2a96a';
+    });
   }
 }

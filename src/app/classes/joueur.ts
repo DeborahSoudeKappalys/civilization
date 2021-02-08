@@ -38,5 +38,9 @@ export class Joueur {
         return this.ressources?.find(res => res.id === id)?.quantity;
     }
 
+    getCantons() {
+        return this.cantons;
+    }
+
 }
 

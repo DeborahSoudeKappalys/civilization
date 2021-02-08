@@ -8,19 +8,4 @@ import { Canton } from '../classes/canton';
 export class CantonsService {
 
   constructor() { }
-
-  getCantonById(id: number): Canton|undefined{
-    let cantonIndex: number = -1; 
-    CANTONS76.forEach((canton, index) => {
-      if (canton.id === id) {
-        cantonIndex = index;
-      } 
-    });
-
-    if (cantonIndex != -1) {
-      return CANTONS76[cantonIndex];
-    } else {
-      return undefined;
-    }
-  }
 }

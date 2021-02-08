@@ -17,7 +17,7 @@ export class MapComponent implements AfterViewInit {
       this._currentPlayer = id;
       this.currentCantons = this.jeuService.getCurrentCantons();
       this.currentColor = this.jeuService.getCurrentColor();
-      this.setCantonColor();
+      this.jeuService.setCantonColor();
     }
   }
   
@@ -43,28 +43,19 @@ export class MapComponent implements AfterViewInit {
       }
     });
 
-    this.setCantonColor();
+    this.jeuService.setCantonColor();
   }
 
   openCanton(id: number){
-    if (this.cantonsService.getCantonById(id) != undefined) {
-      this.selectedCanton = this.cantonsService.getCantonById(id);
+    if (this.jeuService.getCantonById(id) != undefined) {
+      this.selectedCanton = this.jeuService.getCantonById(id);
     }
+    this.jeuService.illuminateVoisins(id);
   }
 
   closeCanton(){
       this.selectedCanton = undefined;
   }
 
-  setCantonColor() {
-    this.jeuService.getPlayers().forEach(joueur => {
-      joueur.cantons.forEach(canton => {
-        let element = document.getElementById('76_' + canton.id);
-
-        if (element !== null){
-          element.style.fill = '#' + joueur.couleur;
-        }
-      });
-    });
-  }
+  
 }
