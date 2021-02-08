@@ -98,6 +98,12 @@ section {
             &:hover {
                 background-color: #b39059 ;
             }
+
+            &:disabled {
+                background-color: #d2a96a;
+                opacity: .3;
+                cursor: default;
+            }
         }
     }
 }

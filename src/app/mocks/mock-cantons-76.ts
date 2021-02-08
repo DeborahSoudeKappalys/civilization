@@ -212,7 +212,7 @@ Eu fût créée par Richard, petit fils de Rolon, dans le but de protéger la No
         ressources: [
             {
                 id: 1,
-                quantity: 5,
+                quantity: 2,
             },
             {
                 id: 4,
@@ -668,7 +668,7 @@ Canton situé au sud du département, permet un saut rapide vers son voisin l'Eu
             },
             {
                 id: 3,
-                quantity: 2,
+                quantity: 1,
             }
         ],
         proprio: 99,
