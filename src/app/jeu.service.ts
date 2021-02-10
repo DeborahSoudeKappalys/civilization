@@ -15,14 +15,6 @@ export class JeuService {
   launched: Boolean = false;
   canton?: Canton;
 
-  // Ressources
-  corn?: number;
-  coin?: number;
-  wood?: number;
-  stone?: number;
-  fish?: number;
-  silk?: number;
-
   constructor() { 
     this.currentPlayer.next(0);
     this.turn.next(1);
@@ -47,6 +39,10 @@ export class JeuService {
 
   getCurrentPlayer() {
     return this.currentPlayer.value;
+  }
+
+  setForce(idCanton: number, force: number) {
+    this.joueurs[this.currentPlayer.value].getCantonById(idCanton)!.puissance! += force;
   }
 
   getCurrentCantons() {
@@ -147,22 +143,12 @@ export class JeuService {
     });
   }
 
-  nextPlayer() {
-    this.currentPlayer = this.nextCurrentPlayer();
-    this.refresh();
-  }
-
   getRessourceValue(idRessource: number) {
     return this.getPlayers()[this.currentPlayer.value-1].getRessourceById(idRessource);
   }
 
-  refresh() {
-    this.corn = this.getRessourceValue(1);
-    this.coin = this.getRessourceValue(2);
-    this.wood = this.getRessourceValue(3);
-    this.stone = this.getRessourceValue(4);
-    this.fish = this.getRessourceValue(5);
-    this.silk = this.getRessourceValue(6);
+  removeRessource(idRessource: number, quantity: number) {
+    this.getPlayers()[this.currentPlayer.value].removeRessourceById(idRessource, quantity);
   }
 
   getCantonById(id: number): Canton|undefined{

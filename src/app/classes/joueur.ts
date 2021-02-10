@@ -38,8 +38,16 @@ export class Joueur {
         return this.ressources?.find(res => res.id === id)?.quantity;
     }
 
+    removeRessourceById(id: number, quantity: number) {
+        this.ressources!.find(res => res.id === id)!.quantity -= quantity;
+    }
+
     getCantons() {
         return this.cantons;
+    }
+
+    getCantonById(id: number) {
+        return this.cantons!.find(canton => canton.id === id);
     }
 
 }
