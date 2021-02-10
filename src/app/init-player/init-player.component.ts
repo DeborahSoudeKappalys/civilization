@@ -62,6 +62,15 @@ export class InitPlayerComponent {
     this.nom.setValue('');
     this.titre.setValue('');
 
+    // Préselectionne Couleur et Canton pour le joueur 2
+    if (this.player1Color != '4580ff' && this.player1Canton != 31 ) {
+      this.couleur = '4580ff';
+      this.cantonId = 31;
+    } else {
+      this.couleur = 'cc2e2e';
+      this.cantonId = 10;
+    }
+
     // Lancer le jeu si 2 joueurs sont créés
     if(this.numberOfPlayers === 2) {
       this.jeuService.launch();
