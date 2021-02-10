@@ -62,8 +62,31 @@ export class DetailsComponent {
   }
 
   // ACTIONS CREATE
-  setPuissance(coef = 1) {
-    alert(coef);
+  setPuissance(coef: number) : void {
+    switch (coef) {
+      case 1:
+        this.jeuService.removeRessource(1, 5);
+        this.jeuService.removeRessource(3, 3);
+        this.jeuService.setForce(this.canton!.id!, coef);
+        this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
+        break;
+
+      case 5:
+        this.jeuService.removeRessource(2, 7);
+        this.jeuService.removeRessource(4, 3);
+        this.jeuService.removeRessource(5, 2);
+        this.jeuService.setForce(this.canton!.id!, coef);
+        this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
+        break;
+
+      case 15:
+        this.jeuService.removeRessource(2, 6);
+        this.jeuService.removeRessource(4, 5);
+        this.jeuService.removeRessource(6, 3);
+        this.jeuService.setForce(this.canton!.id!, coef);
+        this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
+        break;
+    }
   }
 
   canBuy(coef: number) {
