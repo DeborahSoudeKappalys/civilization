@@ -192,6 +192,12 @@ export class JeuService {
     });
   }
 
+  colorizeTheNames() {
+    let el = document.getElementsByClassName('name') as HTMLCollectionOf<HTMLElement>;
+    el[0]!.style.color = '#' + this.joueurs[0].couleur;
+    el[1]!.style.color = '#' + this.joueurs[1].couleur;
+  }
+
   colorizeAllCantons() {
     document.querySelector('#g36')?.querySelectorAll('path').forEach(element => {
       element.style.fill = '#d2a96a';

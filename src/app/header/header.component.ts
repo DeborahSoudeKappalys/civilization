@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { JeuService } from '../jeu.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { JeuService } from '../jeu.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
   @Output() sendCurrent: EventEmitter<number> = new EventEmitter();
   current: number = 0;
   players = this.jeuService.getPlayers();
@@ -37,5 +37,9 @@ export class HeaderComponent {
     this.jeuService.turn.subscribe((value) => {
       this.turn = value;
     });
+  }
+  
+  ngAfterViewInit(): void {
+    this.jeuService.colorizeTheNames();
   }
 }
