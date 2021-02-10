@@ -12,12 +12,18 @@ export class JeuService {
   currentPlayer = new BehaviorSubject(1);
   turn = new BehaviorSubject(1);
   numberOfPlayers = new BehaviorSubject(0);
+  nbOfActions = new BehaviorSubject(0);
+
   launched: Boolean = false;
   canton?: Canton;
 
   constructor() { 
     this.currentPlayer.next(0);
     this.turn.next(1);
+  }
+
+  incActions() {
+    this.nbOfActions.next(this.nbOfActions.value + 1);
   }
 
   addPlayer(joueur: Joueur){
