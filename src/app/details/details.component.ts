@@ -33,6 +33,7 @@ export class DetailsComponent {
 
   patienter() {
     this.jeuService.addNewRessources(2);
+    this.setStartMenu();
     this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
   }
 
@@ -41,13 +42,11 @@ export class DetailsComponent {
   }
 
   attaquer() {
-    this.jeuService.addNewRessources();
-    this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
+    alert('A l\'attaque');
   }
 
   deplacer() {
-    this.jeuService.addNewRessources();
-    this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
+    alert('Déplacement !');
   }
 
   // LES MENUS ACTIONS
@@ -68,7 +67,6 @@ export class DetailsComponent {
         this.jeuService.removeRessource(1, 5);
         this.jeuService.removeRessource(3, 3);
         this.jeuService.setForce(this.canton!.id!, coef);
-        this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
         break;
 
       case 5:
@@ -76,7 +74,6 @@ export class DetailsComponent {
         this.jeuService.removeRessource(4, 3);
         this.jeuService.removeRessource(5, 2);
         this.jeuService.setForce(this.canton!.id!, coef);
-        this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
         break;
 
       case 15:
@@ -84,7 +81,6 @@ export class DetailsComponent {
         this.jeuService.removeRessource(4, 5);
         this.jeuService.removeRessource(6, 3);
         this.jeuService.setForce(this.canton!.id!, coef);
-        this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
         break;
     }
   }
