@@ -42,7 +42,7 @@ Situé dans la vallée de la seine, Barentin est un canton en plein essor. Au co
             }
         ],
         proprio: 99,
-        voisins: [20, 23, 21, 6, 24, 22, 29, 35],
+        voisins: [20, 23, 21, 6, 24, 22, 29, 35, 28],
         puissance: 1,
     },
     {
@@ -128,7 +128,7 @@ Ce jeune canton naquit sur les bords du Robec, le berceau de Rouen. Son point fo
             }
         ],
         proprio: 99,
-        voisins: [21, 2, 29, 30, 27, 31, 5],
+        voisins: [21, 2, 29, 30, 34, 31, 5],
         puissance: 1,
     },
     {
@@ -287,7 +287,7 @@ Ce petit canton proche de la capitale départementale, offre des solutions logis
             }
         ],
         proprio: 99,
-        voisins: [4, 28, 27, 31, 9],
+        voisins: [4, 28, 27, 31, 9, 34],
         puissance: 1,
     },
     {
@@ -312,7 +312,7 @@ Le Havre premier du nom, baptisé par Napoléon Bonaparte, possède le meilleur 
             },
         ],
         proprio: 99,
-        voisins: [26, 17, 18, 19],
+        voisins: [26, 17, 18, 19, 15],
         puissance: 2,
     },
     {
@@ -333,7 +333,7 @@ Le Havre second du nom, est l'avant-garde de la cité. Davantage ancrée dans le
             },
         ],
         proprio: 99,
-        voisins: [26, 16, 17],
+        voisins: [26, 16, 17, 14],
         puissance: 1,
     },
     {
@@ -350,7 +350,7 @@ Le Havre troisième du nom, contrôle aisément les entrées maritimes avec une 
             },
         ],
         proprio: 99,
-        voisins: [26, 32, 17, 18, 19],
+        voisins: [26, 32, 17, 18, 19, 15],
         puissance: 1,
     },
     {
@@ -371,7 +371,7 @@ Le Havre quatrième du nom, petite enclave de la cité, est le point névralgiqu
             },
         ],
         proprio: 99,
-        voisins: [15, 16, 14, 17],
+        voisins: [15, 16, 14, 18],
         puissance: 1,
     },
     {
@@ -426,7 +426,7 @@ Ancienne cité, Luneray, connue auparavant sous le nom de Luneraco, prospère de
             }
         ],
         proprio: 99,
-        voisins: [7, 8, 23, 2, 24, 35, 33],
+        voisins: [7, 8, 23, 2, 35, 33],
         puissance: 1,
     },
     {
@@ -576,7 +576,7 @@ Ce minuscule canton, possède une variété de ressources importante. Un allié 
             },
         ],
         proprio: 99,
-        voisins: [28, 30, 6, 31, 13],
+        voisins: [28, 30, 31, 13, 34],
         puissance: 1,
     },
     {
@@ -601,7 +601,7 @@ Rouen, ville aux cent clochets et capitale de la Seine-Maritime, elle est le sym
             },
         ],
         proprio: 99,
-        voisins: [4, 22, 29, 30, 27, 13],
+        voisins: [4, 22, 29, 30, 27, 13, 2],
         puissance: 3,
     },
     {
@@ -651,7 +651,7 @@ Rouen troisième du nom, borde la Seine. La capitale accède au commerce maritim
             },
         ],
         proprio: 99,
-        voisins: [28, 29, 6, 27],
+        voisins: [28, 29, 6, 27, 34],
         puissance: 1,
     },
     {
@@ -672,7 +672,7 @@ Canton situé au sud du département, permet un saut rapide vers son voisin l'Eu
             }
         ],
         proprio: 99,
-        voisins: [13, 27, 6, 5, 9],
+        voisins: [13, 34, 6, 5, 9],
         puissance: 1,
     },
     {
