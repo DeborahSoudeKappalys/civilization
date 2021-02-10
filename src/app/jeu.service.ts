@@ -103,7 +103,7 @@ export class JeuService {
         let element = document.getElementById('76_' + canton);
         
         if (element !== null){
-          element.style.fill = '#ac8a56';
+          element.style.fill = '#c89951';
         }
       });
     }
@@ -194,7 +194,7 @@ export class JeuService {
 
   colorizeAllCantons() {
     document.querySelector('#g36')?.querySelectorAll('path').forEach(element => {
-      element.style.fill = '#c89951';
+      element.style.fill = '#d2a96a';
     });
   }
 }
