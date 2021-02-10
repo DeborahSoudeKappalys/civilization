@@ -536,6 +536,7 @@ Bordant la Seine, Notre-Dame-de-Gravenchon s'est démarqué des autres de par sa
         ],
         proprio: 99,
         voisins: [3, 33, 35, 24, 1],
+        puissance: 1,
     },
     {
         id: 26,
