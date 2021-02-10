@@ -194,7 +194,7 @@ export class JeuService {
 
   colorizeAllCantons() {
     document.querySelector('#g36')?.querySelectorAll('path').forEach(element => {
-      element.style.fill = '#d2a96a';
+      element.style.fill = '#c89951';
     });
   }
 }
