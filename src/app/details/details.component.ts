@@ -200,6 +200,7 @@ export class DetailsComponent {
     }
 
     this.jeuService.setCantonColor();
+    this.target = undefined;
     this.jeuService.setPeace();
   }
 }
