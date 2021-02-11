@@ -105,6 +105,10 @@ section {
                 opacity: .3;
                 cursor: default;
             }
+
+            img.crown {
+                max-width: 20px !important;
+            }
         }
     }
 }

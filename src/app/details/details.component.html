@@ -35,7 +35,7 @@
 
         <p> Choisissez votre cible:</p>
         <div class="conteneur-action">
-            <button *ngFor="let voisin of voisinsEnnemis" (click)="setTarget(voisin.id!)"> {{ voisin.nom }} - {{ voisin.puissance }} </button>
+            <button *ngFor="let voisin of voisinsEnnemis" (click)="setTarget(voisin.id!)"> {{ voisin.nom }} - <img class="crown" src="../../assets/crown.svg" />{{ voisin.puissance }} </button>
         </div>
 
         <table>
