@@ -3,6 +3,7 @@ import panzoom from "panzoom";
 import { Canton } from '../classes/canton';
 import { CantonsService } from '../services/cantons.service';
 import { JeuService } from '../jeu.service';
+import { Joueur } from '../classes/joueur';
 
 @Component({
   selector: 'app-map',
@@ -26,7 +27,9 @@ export class MapComponent implements AfterViewInit {
   currentCantons: Array<string> = [];
   currentColor?: string;
   selectedCanton?: number;
-  isFinish: Boolean = false;
+  isFinish: number = 99;
+  winner?: Joueur;
+  turn?: number;
 
   constructor(private jeuService: JeuService) { 
     this.jeuService.selectedCanton.subscribe((value) => {
@@ -35,6 +38,11 @@ export class MapComponent implements AfterViewInit {
 
     this.jeuService.isFinish.subscribe((value) => {
       this.isFinish = value;
+      this.winner = this.jeuService.getPlayer(this.isFinish);
+    });
+
+    this.jeuService.turn.subscribe((value) => {
+      this.turn = value;
     });
   }
 

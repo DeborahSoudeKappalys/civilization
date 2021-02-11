@@ -15,7 +15,7 @@ export class JeuService {
   numberOfPlayers = new BehaviorSubject(0);
   nbOfActions = new BehaviorSubject(0);
   isWar = new BehaviorSubject(false);
-  isFinish = new BehaviorSubject(false);
+  isFinish = new BehaviorSubject(99);
 
   launched: Boolean = false;
   canton?: Canton;
@@ -25,7 +25,7 @@ export class JeuService {
   constructor() { 
     this.currentPlayer.next(0);
     this.currentPlayer.next(0);
-    this.isFinish.next(false);
+    this.isFinish.next(99);
     this.turn.next(1);
 
     this.selectedCanton.next(0);
@@ -42,8 +42,8 @@ export class JeuService {
     this.isWar.next(false);
   }
 
-  finishGame() {
-    this.isFinish.next(true);
+  finishGame(id: number) {
+    this.isFinish.next(id);
   }
 
   // REFRESH RESSOURCES APRES ACTION
@@ -95,7 +95,7 @@ export class JeuService {
 
   nextCurrentPlayer() {
     if (this.joueurs[this.otherPlayer.value].cantons.length === 0) {
-      return this.finishGame();
+      return this.finishGame(this.currentPlayer.value);
     } else {
       if (this.currentPlayer.value === 0) {
         this.currentPlayer.next(1);
