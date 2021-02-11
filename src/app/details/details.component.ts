@@ -151,6 +151,7 @@ export class DetailsComponent {
 
   // ACTION ATTAQUER
   prepareWar() {
+    this.voisinsEnnemis = [];
     let voisins = this.canton!.voisins;
     if (voisins != undefined) {
       voisins.forEach((id) => {
