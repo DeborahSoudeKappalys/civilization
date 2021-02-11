@@ -16,10 +16,14 @@ export class JeuService {
 
   launched: Boolean = false;
   canton?: Canton;
+  selectedCanton = new BehaviorSubject(0);
+
 
   constructor() { 
     this.currentPlayer.next(0);
     this.turn.next(1);
+
+    this.selectedCanton.next(0);
   }
 
   incActions() {
@@ -194,5 +198,13 @@ export class JeuService {
     document.querySelector('#g36')?.querySelectorAll('path').forEach(element => {
       element.style.fill = '#d2a96a';
     });
+  }
+
+  setSelectedCanton(id: number) {
+    this.selectedCanton.next(id);
+  }
+
+  resetSelectedCanton() {
+    this.selectedCanton.next(99);
   }
 }

@@ -25,9 +25,13 @@ export class MapComponent implements AfterViewInit {
 
   currentCantons: Array<string> = [];
   currentColor?: string;
-  selectedCanton?: Canton;
+  selectedCanton?: number;
 
-  constructor(private cantonsService: CantonsService, private jeuService: JeuService) { }
+  constructor(private jeuService: JeuService) { 
+    this.jeuService.selectedCanton.subscribe((value) => {
+      this.selectedCanton = value;
+    });
+  }
 
   ngAfterViewInit() {
     // panzoom(document.querySelector('#scene'));
@@ -48,7 +52,7 @@ export class MapComponent implements AfterViewInit {
 
   openCanton(id: number){
     if (this.jeuService.getCantonById(id) != undefined) {
-      this.selectedCanton = this.jeuService.getCantonById(id);
+      this.jeuService.setSelectedCanton(id);
     }
     this.jeuService.illuminateVoisins(id);
   }
@@ -56,7 +60,8 @@ export class MapComponent implements AfterViewInit {
   closeCanton(){
     this.jeuService.colorizeAllCantons();
     this.jeuService.setCantonColor();
-    this.selectedCanton = undefined;
+    this.jeuService.resetSelectedCanton();
+
   }
 
   
