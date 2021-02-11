@@ -42,6 +42,18 @@ export class Joueur {
         this.ressources!.find(res => res.id === id)!.quantity -= quantity;
     }
 
+    addCanton(canton: Canton) {
+        this.cantons.push(canton);
+    }
+
+    removeCanton(id: number) {
+        this.cantons.forEach((canton, index) => {
+            if (canton.id === id) {
+                this.cantons.splice(index, 1);
+            }
+        });
+    }
+
     getCantons() {
         return this.cantons;
     }

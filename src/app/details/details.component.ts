@@ -13,18 +13,35 @@ export class DetailsComponent {
   canton?: Canton;
   selectedRessource?: Ressources;
   current: number = 1;
+  other: number = 1;
 
   startMenu: boolean = true;
   createMenu: boolean = false;
+
+  isWar: boolean = false;
+  voisinsEnnemis: Array<Canton> = [];
+  target?: Canton;
 
   constructor(private ressourcesService: RessourcesService, private jeuService: JeuService) { 
     this.jeuService.currentPlayer.subscribe((value) => {
       this.current = value;
     });
 
+    this.jeuService.otherPlayer.subscribe((value) => {
+      this.other = value;
+    });
+
     this.jeuService.selectedCanton.subscribe((value) => {
       this.canton = this.jeuService.getCantonById(value);
     })
+
+    this.jeuService.isWar.subscribe((value) => {
+      this.isWar = value;
+
+      if (value) {
+        this.prepareWar();
+      }
+    });
   }
 
   displayRessource(id: number){
@@ -38,7 +55,7 @@ export class DetailsComponent {
   patienter() {
     this.jeuService.addNewRessources(2);
     this.setStartMenu();
-    this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
+    this.jeuService.nextCurrentPlayer();
 
     this.jeuService.colorizeAllCantons();
     this.jeuService.setCantonColor();
@@ -50,7 +67,7 @@ export class DetailsComponent {
   }
 
   attaquer() {
-    alert('A l\'attaque');
+    this.jeuService.setWar();
   }
 
   deplacer() {
@@ -130,5 +147,58 @@ export class DetailsComponent {
       default:
         return false;
     }
+  }
+
+  // ACTION ATTAQUER
+  prepareWar() {
+    let voisins = this.canton!.voisins;
+    if (voisins != undefined) {
+      voisins.forEach((id) => {
+        let voisin = this.jeuService.getCantonById(id);
+
+        if (voisin != undefined && voisin.proprio != this.jeuService.getCurrentPlayer()) {
+          this.voisinsEnnemis.push(voisin!);
+        }
+      });
+    }
+  }
+
+  fermer() {
+    this.jeuService.setPeace();
+    this.voisinsEnnemis = [];
+  }
+
+  setTarget(id: number) {
+    this.target = this.jeuService.getCantonById(id);
+  }
+
+  simuAttaque() {
+    // Initialisation Attaquant
+    let p1 = this.canton!.puissance!;
+    let p1min = Math.round(p1 / 1.5);
+    let p1max = Math.round(p1 * 1.5);
+    let pf1 = Math.round(Math.random() * (p1max - p1min) + p1min);
+
+    // Initialisation Cible
+    let p2 = this.target!.puissance!;
+    let p2min = Math.round(p2 / 1.5);
+    let p2max = Math.round(p2 * 1.5);
+    let pf2 = Math.round(Math.random() * (p2max - p2min) + p2min);
+
+    let pfres = pf1 - pf2;
+
+    if (pfres > 1) {
+      this.canton!.puissance = 1;
+      this.target!.puissance = pfres - 1;
+      this.target!.proprio = this.jeuService.getCurrentPlayer();
+      this.jeuService.joueurs[this.jeuService.currentPlayer.value].addCanton(this.jeuService.getCantonById(this.target!.id!)!);
+      this.jeuService.joueurs[this.jeuService.otherPlayer.value].removeCanton(this.target!.id!);
+    } else {
+      this.canton!.puissance = 1;
+      this.target!.puissance = pfres;
+    }
+
+    this.jeuService.setCantonColor();
+    this.jeuService.setPeace();
   }
 }
