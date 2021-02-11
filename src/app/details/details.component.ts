@@ -39,6 +39,10 @@ export class DetailsComponent {
     this.jeuService.addNewRessources(2);
     this.setStartMenu();
     this.jeuService.currentPlayer = this.jeuService.nextCurrentPlayer();
+
+    this.jeuService.colorizeAllCantons();
+    this.jeuService.setCantonColor();
+    this.jeuService.resetSelectedCanton();
   }
 
   creer() {

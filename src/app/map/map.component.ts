@@ -61,8 +61,5 @@ export class MapComponent implements AfterViewInit {
     this.jeuService.colorizeAllCantons();
     this.jeuService.setCantonColor();
     this.jeuService.resetSelectedCanton();
-
   }
-
-  
 }
