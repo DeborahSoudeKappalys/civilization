@@ -10,7 +10,7 @@ import { JeuService } from '../jeu.service';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent {
-  @Input() canton?: Canton;
+  canton?: Canton;
   selectedRessource?: Ressources;
   current: number = 1;
 
@@ -21,6 +21,10 @@ export class DetailsComponent {
     this.jeuService.currentPlayer.subscribe((value) => {
       this.current = value;
     });
+
+    this.jeuService.selectedCanton.subscribe((value) => {
+      this.canton = this.jeuService.getCantonById(value);
+    })
   }
 
   displayRessource(id: number){
