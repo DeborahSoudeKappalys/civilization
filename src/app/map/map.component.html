@@ -57,5 +57,9 @@
 </div>
 <app-details *ngIf="selectedCanton != 999"></app-details>
 
-<h1 *ngIf="isFinish"></h1>
+<div *ngIf="isFinish != 99" class="bandeau-fin">
+  <h1> {{ winner!.nom! }} </h1>
+  <h2> a gagné la partie en </h2>
+  <h3> {{ turn }} tours </h3>
+</div>
 

@@ -15,3 +15,13 @@
         min-height: auto;
     }
 }
+
+.bandeau-fin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-8cm, -4.5cm);
+    height: 9cm;
+    width: 16cm;
+    background-image: url("../../assets/gameUiEnd.svg");
+}
