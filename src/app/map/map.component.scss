@@ -4,13 +4,9 @@
     outline: none;
 
     #g36 {
-        cursor: pointer;
-
-        path {
-            &:hover {
-                fill: #343f3f;
-                cursor: pointer;
-            }
+        path:hover {
+            fill: #343f3f !important;
+            cursor: pointer;
         }
     }
 
