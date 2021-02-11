@@ -1,6 +1,6 @@
 <section *ngIf="canton != undefined">
     <div class="scroll"></div>
-    <div class="content">
+    <div *ngIf="!isWar" class="content">
         <h1>{{ canton.nom }}</h1>
         <h2 class="puissance">{{ canton.puissance }}</h2>
         <img src="{{ canton.blason }}" alt="">
@@ -27,5 +27,28 @@
             <button *ngIf="createMenu" [disabled]="!canBuy(15)" (click)="setPuissance(15)"> Soutien </button>
             <button *ngIf="createMenu" (click)="setStartMenu()"> Retour </button>
         </div>
+    </div>
+
+    
+    <div *ngIf="isWar" class="content">
+        <button (click)="fermer()"> Quitter </button>
+
+        <p> Choisissez votre cible:</p>
+        <div class="conteneur-action">
+            <button *ngFor="let voisin of voisinsEnnemis" (click)="setTarget(voisin.id!)"> {{ voisin.nom }} - {{ voisin.puissance }} </button>
+        </div>
+
+        <table>
+            <tr>
+                <td> {{ canton.nom }} </td>
+                <td> {{ canton.puissance }} </td>
+            </tr>
+            <tr *ngIf="target != undefined">
+                <td> {{ target.nom }} </td>
+                <td> {{ target.puissance }} </td>
+            </tr>
+        </table>
+
+        <button (click)="simuAttaque()"> attaquer </button>
     </div>
 </section>

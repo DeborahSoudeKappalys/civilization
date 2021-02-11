@@ -26,10 +26,15 @@ export class MapComponent implements AfterViewInit {
   currentCantons: Array<string> = [];
   currentColor?: string;
   selectedCanton?: number;
+  isFinish: Boolean = false;
 
   constructor(private jeuService: JeuService) { 
     this.jeuService.selectedCanton.subscribe((value) => {
       this.selectedCanton = value;
+    });
+
+    this.jeuService.isFinish.subscribe((value) => {
+      this.isFinish = value;
     });
   }
 

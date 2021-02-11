@@ -10,9 +10,12 @@ import { BehaviorSubject } from 'rxjs';
 export class JeuService {
   joueurs: Array<Joueur> = [];
   currentPlayer = new BehaviorSubject(1);
+  otherPlayer = new BehaviorSubject(0);
   turn = new BehaviorSubject(1);
   numberOfPlayers = new BehaviorSubject(0);
   nbOfActions = new BehaviorSubject(0);
+  isWar = new BehaviorSubject(false);
+  isFinish = new BehaviorSubject(false);
 
   launched: Boolean = false;
   canton?: Canton;
@@ -21,11 +24,29 @@ export class JeuService {
 
   constructor() { 
     this.currentPlayer.next(0);
+    this.currentPlayer.next(0);
+    this.isFinish.next(false);
     this.turn.next(1);
 
     this.selectedCanton.next(0);
+
+    this.isWar.next(false);
   }
 
+  // LA GUERRE
+  setWar() {
+    this.isWar.next(true);
+  }
+
+  setPeace() {
+    this.isWar.next(false);
+  }
+
+  finishGame() {
+    this.isFinish.next(true);
+  }
+
+  // REFRESH RESSOURCES APRES ACTION
   incActions() {
     this.nbOfActions.next(this.nbOfActions.value + 1);
   }
@@ -73,14 +94,20 @@ export class JeuService {
   }
 
   nextCurrentPlayer() {
-    if (this.currentPlayer.value === 0) {
-      this.currentPlayer.next(1);
+    if (this.joueurs[this.otherPlayer.value].cantons.length === 0) {
+      return this.finishGame();
     } else {
-      this.currentPlayer.next(0);
-      this.nextTurn();
-    } 
-
-    return this.currentPlayer;
+      if (this.currentPlayer.value === 0) {
+        this.currentPlayer.next(1);
+        this.otherPlayer.next(0);
+      } else {
+        this.currentPlayer.next(0);
+        this.otherPlayer.next(1);
+        this.nextTurn();
+      } 
+  
+      return this.currentPlayer;
+    }
   }
 
   getVoisins(){
