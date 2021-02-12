@@ -31,7 +31,7 @@
 
     
     <div *ngIf="isWar" class="content">
-        <button (click)="fermer()"> Quitter </button>
+        <button (click)="fermer()" class="submit"> Quitter </button>
 
         <p> Choisissez votre cible:</p>
         <div class="conteneur-action">
@@ -49,6 +49,6 @@
             </tr>
         </table>
 
-        <button (click)="simuAttaque()"> attaquer </button>
+        <button (click)="simuAttaque()" class="submit"> attaquer </button>
     </div>
 </section>

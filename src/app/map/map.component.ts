@@ -10,28 +10,28 @@ import { Joueur } from '../classes/joueur';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit {
-  @Input() _currentPlayer: number = 0;
-  @Input('currentPlayer')
-  set currentPlayer(id: number) {
-    if (id !== this._currentPlayer) {
-      this._currentPlayer = id;
-      this.currentCantons = this.jeuService.getCurrentCantons();
-      this.currentColor = this.jeuService.getCurrentColor();
-      this.jeuService.setCantonColor();
-    }
-  }
-  
+export class MapComponent implements AfterViewInit {  
   @ViewChild('scene', { static: false }) scene!: ElementRef;
 
+  currentPlayer: number = 0;
   currentCantons: Array<string> = [];
   currentColor?: string;
   selectedCanton?: number;
   isFinish: number = 99;
   winner?: Joueur;
   turn?: number;
+  nextPlayer: Boolean = false;
 
   constructor(private jeuService: JeuService) { 
+    this.jeuService.currentPlayer.subscribe((value) => {
+      this.currentPlayer = value;
+      this.currentCantons = this.jeuService.getCurrentCantons();
+      this.currentColor = this.jeuService.getCurrentColor();
+      this.jeuService.setCantonColor();
+
+      this.showNextPlayer();
+    });
+
     this.jeuService.selectedCanton.subscribe((value) => {
       this.selectedCanton = value;
     });
@@ -61,6 +61,18 @@ export class MapComponent implements AfterViewInit {
     });
 
     this.jeuService.setCantonColor();
+  }
+
+  showNextPlayer() {
+    this.nextPlayer = true;
+
+    setTimeout(() => { 
+      this.nextPlayer = false;
+    }, 1500);
+  }
+
+  getCurrentPlayer() {
+    return this.jeuService.joueurs[this.currentPlayer];
   }
 
   openCanton(id: number){
