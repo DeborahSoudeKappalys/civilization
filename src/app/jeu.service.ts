@@ -160,21 +160,17 @@ export class JeuService {
   }
 
   addNewRessources(coef = 0) {
+    // Joueur courrant
     let joueur = this.joueurs[this.getCurrentPlayer()];
     
+    // Pour chaque canton que le joueur possède
     joueur.cantons.forEach(canton => {
-      let ressourcesJoueur = joueur.ressources;
-      let ressourcesCanton = canton.ressources;
-
-      if (ressourcesCanton != undefined) {
-        ressourcesCanton.forEach(ressource => {
-          ressource.id;
-
-          ressourcesJoueur?.forEach(ressourceJ => {
-            if (ressourceJ.id === ressource.id){
-              ressourceJ.quantity += (ressource.quantity + coef);
-            }
-          })
+      // Si le canton possède des ressources
+      if (canton.ressources != undefined) {
+        // Pour chaque ressource
+        canton.ressources.forEach(ressource => {
+          // On l'assigne à la ressource du joueur
+          joueur.setRessourceById(ressource.id, ressource.quantity);
         });          
       }
     });
