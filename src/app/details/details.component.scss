@@ -29,6 +29,33 @@ section {
         top: 0;
         left: 0;
         z-index: 2;
+
+        button {
+            border-radius: 100px;
+            width: 20px;
+            height: 20px;
+            margin: 0 4px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+
+            &.submit {
+                background-color: #3b3a3a;
+                border-radius: 0;
+                width: initial;
+                height: initial;
+                color: #d2a96a;
+                padding: 8px 1rem;
+                font-size: 1rem;
+                margin-top: 2rem;
+                text-transform: uppercase;
+
+                &:hover {
+                    color: #3b3a3a;
+                    background-color: #d2a96a;
+                }
+            }
+        }
     }
 
     img {
