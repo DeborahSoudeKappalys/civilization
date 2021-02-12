@@ -15,6 +15,7 @@ export class JeuService {
   numberOfPlayers = new BehaviorSubject(0);
   nbOfActions = new BehaviorSubject(0);
   isWar = new BehaviorSubject(false);
+  moving = new BehaviorSubject(false);
   isFinish = new BehaviorSubject(99);
 
   launched: Boolean = false;
@@ -40,6 +41,14 @@ export class JeuService {
 
   setPeace() {
     this.isWar.next(false);
+  }
+
+  setMoving() {
+    this.moving.next(true);
+  }
+
+  removeMoving() {
+    this.moving.next(false);
   }
 
   finishGame(id: number) {
