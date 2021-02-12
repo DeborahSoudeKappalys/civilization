@@ -138,4 +138,55 @@ section {
             }
         }
     }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        max-width: 80%;
+        margin: 5rem auto 0;
+
+
+        button {
+            background-color: #4d5b5b;
+            border-radius: 0;
+            width: initial;
+            height: initial;
+            color: #d2a96a;
+            padding: 8px 3rem;
+            font-size: 1.2rem;
+            margin-top: 4px;
+            cursor: pointer;
+            outline: none;
+            border: none;
+        }
+    }
+
+    table {
+        width: 100%;
+        margin-top: 3rem;
+
+        img.crown {
+            max-width: 20px !important;
+        }
+
+        tr:first-child {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #ac8a56;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+
+
+        td {
+            display: flex;
+            justify-content: center;
+
+            strong {
+                margin: 0 4px;
+            }
+        }
+    }
+
 }
