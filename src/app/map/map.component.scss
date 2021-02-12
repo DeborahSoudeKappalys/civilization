@@ -25,3 +25,17 @@
     width: 16cm;
     background-image: url("../../assets/gameUiEnd.svg");
 }
+
+.bandeau-next-player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-444px, -112px);
+    height: 225px;
+    width: 888px;
+    background-image: url("../../assets/gameUiButton.svg");
+
+    h1 {
+        // Stylise la phrase
+    }
+}
