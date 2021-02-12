@@ -31,8 +31,7 @@
 
     
     <div *ngIf="isWar" class="content">
-        <button (click)="fermer()" class="submit"> Quitter </button>
-
+        <h2> Vous attaquez </h2>
         <p> Choisissez votre cible:</p>
         <div class="conteneur-action">
             <button *ngFor="let voisin of voisinsEnnemis" (click)="setTarget(voisin.id!)"> {{ voisin.nom }} - <img class="crown" src="../../assets/crown.svg" />{{ voisin.puissance }} </button>
@@ -40,15 +39,18 @@
 
         <table>
             <tr>
-                <td> {{ canton.nom }} </td>
-                <td> {{ canton.puissance }} </td>
+                <td> Vous attaquez avec <strong> {{ canton.nom }}</strong> </td>
+                <td> <img class="crown" src="../../assets/crown.svg" />{{ canton.puissance }} </td>
             </tr>
             <tr *ngIf="target != undefined">
-                <td> {{ target.nom }} </td>
-                <td> {{ target.puissance }} </td>
+                <td> Vous ciblez <strong> {{ target.nom }}</strong> </td>
+                <td> <img class="crown" src="../../assets/crown.svg" />{{ target.puissance }} </td>
             </tr>
         </table>
 
-        <button (click)="simuAttaque()" class="submit"> attaquer </button>
+        <div class="buttons">
+            <button (click)="fermer()"> Quitter </button>
+            <button (click)="simuAttaque()"> Attaquer </button>
+        </div>
     </div>
 </section>
