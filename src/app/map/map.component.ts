@@ -1,7 +1,5 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, Input } from '@angular/core';
-import panzoom from "panzoom";
-import { Canton } from '../classes/canton';
-import { CantonsService } from '../services/cantons.service';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import panzoom, { PanZoom } from "panzoom";
 import { JeuService } from '../jeu.service';
 import { Joueur } from '../classes/joueur';
 
@@ -21,6 +19,8 @@ export class MapComponent implements AfterViewInit {
   winner?: Joueur;
   turn?: number;
   nextPlayer: Boolean = false;
+
+  panzoom?: PanZoom;
 
   constructor(private jeuService: JeuService) { 
     this.jeuService.currentPlayer.subscribe((value) => {
@@ -47,9 +47,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // panzoom(document.querySelector('#scene'));
-    panzoom(this.scene.nativeElement, {
-      transformOrigin: {x: 0.5, y: 0.5},
+    this.panzoom = panzoom(this.scene.nativeElement, {
       minZoom: 1,
       boundsPadding: 1,
       bounds: {
