@@ -1,6 +1,6 @@
 <section *ngIf="canton != undefined">
     <div class="scroll"></div>
-    <div *ngIf="!isWar" class="content">
+    <div *ngIf="!isWar && !moving" class="content">
         <h1>{{ canton.nom }}</h1>
         <h2 class="puissance">{{ canton.puissance }}</h2>
         <img src="{{ canton.blason }}" alt="">
@@ -20,7 +20,7 @@
             <button *ngIf="startMenu" (click)="patienter()"> Finir mes actions </button>
             <button *ngIf="startMenu" (click)="creer()"> Former des troupes </button>
             <button *ngIf="startMenu" (click)="attaquer()"> Attaquer !</button>
-            <button *ngIf="startMenu" (click)="deplacer()">Déplacer mes troupes</button>
+            <button *ngIf="startMenu && canton.puissance! > 1" (click)="deplacer()">Déplacer mes troupes</button>
 
             <button *ngIf="createMenu" [disabled]="!canBuy(1)" (click)="setPuissance(1)"> Infanterie </button>
             <button *ngIf="createMenu" [disabled]="!canBuy(5)" (click)="setPuissance(5)"> Cavalerie </button>
@@ -51,6 +51,25 @@
         <div class="buttons">
             <button (click)="fermer()"> Quitter </button>
             <button (click)="simuAttaque()"> Attaquer </button>
+        </div>
+    </div>
+
+    <div *ngIf="moving" class="content">
+        <h3> Vous déplacez vos troupe de </h3>
+        <h2> {{ canton.nom }} </h2>
+        <p> Choisissez votre canton d'arrivée:</p>
+        <div class="conteneur-action">
+            <button *ngFor="let voisin of voisinsAlliers" (click)="movingTarget(voisin.id!)"> {{ voisin.nom }} - <img class="crown" src="../../assets/crown.svg" />{{ voisin.puissance }} </button>
+        </div>
+
+        <h3> Nombre d'unité à déplacer </h3>
+        <p> {{ canton.puissance! === 2 ? '(1 maximum)' :  'Entre 1 et ' + (canton.puissance! - 1) }} </p>
+
+        <input type="number" #nb_puissance>
+
+        <div class="buttons">
+            <button (click)="fermer()"> Quitter </button>
+            <button (click)="deplacement()" type="submit"> Déplacer </button>
         </div>
     </div>
 </section>
