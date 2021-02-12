@@ -24,6 +24,26 @@
     height: 9cm;
     width: 16cm;
     background-image: url("../../assets/gameUiEnd.svg");
+    text-align: center;
+
+    img {
+        max-width: 7rem;
+        width: 100%;
+        margin-top: 3rem;
+    }
+
+    h1 {
+        font-family: "Almendra SC", serif;
+        text-align: center;
+        color: #faca83;
+        margin: 0;
+    }
+
+    h2 {
+        text-align: center;
+        color: #faca83;
+        margin: 0;
+    }
 }
 
 .bandeau-next-player {
