@@ -6,7 +6,7 @@ export class Joueur {
     titre?: string;
     couleur: string = '4580ff';
     cantons: Array<Canton> = [];
-    ressources?:Array<{id: number, quantity: number}>;
+    ressources:Array<{id: number, quantity: number}> = [];
     
     constructor(id: number, nom: string, titre: string, couleur: string, canton: Canton){
 
@@ -32,6 +32,10 @@ export class Joueur {
 
     getStartCanton() {
         return this.cantons[0];
+    }
+
+    setRessourceById(id: number, quantity: number) {
+        this.ressources.find(res => res.id === id)!.quantity += quantity;
     }
 
     getRessourceById(id: number) {

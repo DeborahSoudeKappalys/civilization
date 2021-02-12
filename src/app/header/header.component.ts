@@ -26,11 +26,11 @@ export class HeaderComponent implements AfterViewInit {
     this.jeuService.currentPlayer.subscribe((value) => {
       this.current = value;
       this.corn = this.jeuService.getPlayer(value).getRessourceById(1);
-      this.coin = this.jeuService.getPlayer(value).getRessourceById(2);
+      this.fish = this.jeuService.getPlayer(value).getRessourceById(2);
       this.wood = this.jeuService.getPlayer(value).getRessourceById(3);
       this.stone = this.jeuService.getPlayer(value).getRessourceById(4);
-      this.fish = this.jeuService.getPlayer(value).getRessourceById(5);
-      this.silk = this.jeuService.getPlayer(value).getRessourceById(6);
+      this.silk = this.jeuService.getPlayer(value).getRessourceById(5);
+      this.coin = this.jeuService.getPlayer(value).getRessourceById(6);
       this.turn = this.jeuService.getTurn();
     });
 
