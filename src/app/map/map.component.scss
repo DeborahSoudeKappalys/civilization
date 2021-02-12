@@ -35,7 +35,16 @@
     width: 888px;
     background-image: url("../../assets/gameUiButton.svg");
 
-    h1 {
-        // Stylise la phrase
+    h2 {
+        text-align: center;
+        color: #faca83;
+        margin: 5rem 0 0;
     }
+
+    h1 {
+        font-family: "Almendra SC", serif;
+        text-align: center;
+        color: #faca83;
+        margin-top: 0;
+    }   
 }
