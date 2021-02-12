@@ -53,7 +53,7 @@ export class DetailsComponent {
   }
 
   patienter() {
-    this.jeuService.addNewRessources(2);
+    this.jeuService.addNewRessources();
     this.setStartMenu();
     this.jeuService.nextCurrentPlayer();
 
@@ -177,7 +177,7 @@ export class DetailsComponent {
     // Initialisation Attaquant
     let p1 = this.canton!.puissance!;
     let p1min = Math.round(p1 / 1.5);
-    let p1max = Math.round(p1 * 1.5);
+    let p1max = Math.round(p1 * 1.5) + 1;
     let pf1 = Math.round(Math.random() * (p1max - p1min) + p1min);
 
     // Initialisation Cible
@@ -186,17 +186,39 @@ export class DetailsComponent {
     let p2max = Math.round(p2 * 1.5);
     let pf2 = Math.round(Math.random() * (p2max - p2min) + p2min);
 
+    // Calcul de la différence
     let pfres = pf1 - pf2;
 
+    // Si l'attaquant a gagné
     if (pfres > 1) {
+      // La puissance de canton passe à 1 (garnison) et le reste de la puissance avance
       this.canton!.puissance = 1;
-      this.target!.puissance = pfres - 1;
+
+      // Si la puissance calculée est supérieur à la puissance nominale, on prend la puissance nominale 
+      if (pf1 > p1) {
+        this.target!.puissance = p1 - pf2 - 1;
+      } else {
+        this.target!.puissance = pfres - 1;
+      }
+
+      // Si la valeur de puissance est inférieur à 1
+      if (this.target!.puissance < 1) {
+        this.target!.puissance = 1;
+      }
+
+      // Changement du propriétaire
       this.target!.proprio = this.jeuService.getCurrentPlayer();
+
+      // On ajoute le canton au gagnant
       this.jeuService.joueurs[this.jeuService.currentPlayer.value].addCanton(this.jeuService.getCantonById(this.target!.id!)!);
+
+      // On le supprime du perdant
       this.jeuService.joueurs[this.jeuService.otherPlayer.value].removeCanton(this.target!.id!);
+
+      // S'il y a un échec de l'attaque
     } else {
       this.canton!.puissance = 1;
-      this.target!.puissance = pfres;
+      this.target!.puissance = 1;
     }
 
     this.jeuService.setCantonColor();
