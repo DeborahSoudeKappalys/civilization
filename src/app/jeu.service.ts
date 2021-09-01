@@ -186,7 +186,11 @@ export class JeuService {
   }
 
   getRessourceValue(idRessource: number) {
-    return this.getPlayers()[this.currentPlayer.value-1].getRessourceById(idRessource);
+    if (typeof this.getPlayers()[this.currentPlayer.value-1] !== 'undefined') {
+      return this.getPlayers()[this.currentPlayer.value-1].getRessourceById(idRessource);
+    }
+
+    return;
   }
 
   removeRessource(idRessource: number, quantity: number) {
@@ -222,8 +226,10 @@ export class JeuService {
 
   colorizeTheNames() {
     let el = document.getElementsByClassName('name') as HTMLCollectionOf<HTMLElement>;
-    el[0]!.style.color = '#' + this.joueurs[0].couleur;
-    el[1]!.style.color = '#' + this.joueurs[1].couleur;
+    if (typeof el[0] !== 'undefined' && typeof el[1] !== 'undefined') {
+      el[0]!.style.color = '#' + this.joueurs[0].couleur;
+      el[1]!.style.color = '#' + this.joueurs[1].couleur;
+    }
   }
 
   colorizeAllCantons() {
