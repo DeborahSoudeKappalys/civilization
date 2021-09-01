@@ -61,6 +61,12 @@ export class DetailsComponent {
   }
 
   patienter() {
+    if (this.current == 0) {
+      this.jeuService.endRoundJ1 = true;
+    } else if (this.current == 1) {
+      this.jeuService.endRoundJ2 = true;
+    }
+
     this.jeuService.addNewRessources();
     this.setStartMenu();
     this.jeuService.nextCurrentPlayer();

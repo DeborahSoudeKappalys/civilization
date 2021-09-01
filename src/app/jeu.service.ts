@@ -19,6 +19,8 @@ export class JeuService {
   isFinish = new BehaviorSubject(99);
 
   launched: Boolean = false;
+  endRoundJ1: Boolean = false;
+  endRoundJ2: Boolean = false;
   canton?: Canton;
   selectedCanton = new BehaviorSubject(0);
   
@@ -88,24 +90,27 @@ export class JeuService {
   }
 
   getCurrentCantons() {
-    let cantons: Array<Canton> = this.getPlayer(this.getCurrentPlayer()).cantons;
     let tab: Array<string> = [];
-    
-    cantons.forEach(canton => {
-      if(canton.id != undefined) {
-        tab.push('76_' + canton.id);
-      }
-    });
+    if(typeof this.getPlayer(this.getCurrentPlayer()) !== 'undefined') {
+      let cantons: Array<Canton> = this.getPlayer(this.getCurrentPlayer()).cantons;
+      
+      cantons.forEach(canton => {
+        if(canton.id != undefined) {
+          tab.push('76_' + canton.id);
+        }
+      });
+      return tab;
+    }
+
     return tab;
   }
-
 
   getCurrentColor() {
     return this.getPlayer(this.getCurrentPlayer()).couleur;
   }
 
   nextCurrentPlayer() {
-    if (this.joueurs[this.otherPlayer.value].cantons.length === 0) {
+    if (typeof this.joueurs[this.otherPlayer.value] !== 'undefined' && this.joueurs[this.otherPlayer.value].cantons.length === 0) {
       return this.finishGame(this.currentPlayer.value);
     } else {
       if (this.currentPlayer.value === 0) {
@@ -174,17 +179,19 @@ export class JeuService {
     // Joueur courrant
     let joueur = this.joueurs[this.getCurrentPlayer()];
     
-    // Pour chaque canton que le joueur possède
-    joueur.cantons.forEach(canton => {
-      // Si le canton possède des ressources
-      if (canton.ressources != undefined) {
-        // Pour chaque ressource
-        canton.ressources.forEach(ressource => {
-          // On l'assigne à la ressource du joueur
-          joueur.setRessourceById(ressource.id, ressource.quantity);
-        });          
-      }
-    });
+    if ( typeof joueur !== 'undefined') {
+      // Pour chaque canton que le joueur possède
+            joueur.cantons.forEach(canton => {
+              // Si le canton possède des ressources
+              if (canton.ressources != undefined) {
+                // Pour chaque ressource
+                canton.ressources.forEach(ressource => {
+                  // On l'assigne à la ressource du joueur
+                  joueur.setRessourceById(ressource.id, ressource.quantity);
+                });          
+              }
+            });
+    }
   }
 
   getRessourceValue(idRessource: number) {

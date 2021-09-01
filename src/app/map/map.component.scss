@@ -98,4 +98,16 @@
         color: #faca83;
         margin-top: 0;
     }   
+
+    p {
+        text-align: center;
+        color: #faca83;
+        margin: 0 0 0;
+        font-size: 2rem;
+
+        img {
+            max-width: 25px;
+            margin-right: 20px;
+        }
+    }
 }
