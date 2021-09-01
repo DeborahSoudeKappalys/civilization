@@ -53,7 +53,7 @@ export class DetailsComponent {
   }
 
   displayRessource(id: number){
-    if (this.ressourcesService.getRessourceById(id) != undefined) {
+    if (typeof this.ressourcesService !== 'undefined' && this.ressourcesService.getRessourceById(id) != undefined) {
       return this.ressourcesService.getRessourceById(id)?.pictograme;
     } else {
       return undefined;
@@ -134,39 +134,43 @@ export class DetailsComponent {
   }
 
   canBuy(coef: number) {
-    switch (coef) {
-      case 1:
-        if (
-          this.jeuService.joueurs[this.current].getRessourceById(1)! >= 5 &&
-          this.jeuService.joueurs[this.current].getRessourceById(3)! >= 3
-        ) {
-          return true;
-        }
-        return false;
-
-      case 5:
-        if (
-          this.jeuService.joueurs[this.current].getRessourceById(2)! >= 4 &&
-          this.jeuService.joueurs[this.current].getRessourceById(4)! >= 3 &&
-          this.jeuService.joueurs[this.current].getRessourceById(5)! >= 2
-        ) {
-          return true;
-        }
-        return false;
-
-      case 15:
-        if (
-          this.jeuService.joueurs[this.current].getRessourceById(2)! >= 6 &&
-          this.jeuService.joueurs[this.current].getRessourceById(4)! >= 5 &&
-          this.jeuService.joueurs[this.current].getRessourceById(6)! >= 3
-        ) {
-          return true;
-        }
-        return false;
-
-      default:
-        return false;
+    if(typeof this.jeuService.joueurs[this.current] !== 'undefined')
+    {
+      switch (coef) {
+        case 1:
+          if (
+            this.jeuService.joueurs[this.current].getRessourceById(1)! >= 5 &&
+            this.jeuService.joueurs[this.current].getRessourceById(3)! >= 3
+          ) {
+            return true;
+          }
+          return false;
+  
+        case 5:
+          if (
+            this.jeuService.joueurs[this.current].getRessourceById(2)! >= 4 &&
+            this.jeuService.joueurs[this.current].getRessourceById(4)! >= 3 &&
+            this.jeuService.joueurs[this.current].getRessourceById(5)! >= 2
+          ) {
+            return true;
+          }
+          return false;
+  
+        case 15:
+          if (
+            this.jeuService.joueurs[this.current].getRessourceById(2)! >= 6 &&
+            this.jeuService.joueurs[this.current].getRessourceById(4)! >= 5 &&
+            this.jeuService.joueurs[this.current].getRessourceById(6)! >= 3
+          ) {
+            return true;
+          }
+          return false;
+  
+        default:
+          return false;
+      }
     }
+    return false;
   }
 
   // ACTION ATTAQUER
