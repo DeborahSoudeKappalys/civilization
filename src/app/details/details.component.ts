@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Canton } from '../classes/canton';
 import { RessourcesService } from '../services/ressources.service';
 import { Ressources } from '../classes/ressources';
@@ -19,8 +19,12 @@ export class DetailsComponent {
   createMenu: boolean = false;
 
   isWar: boolean = false;
+  moving: boolean = false;
   voisinsEnnemis: Array<Canton> = [];
+  voisinsAlliers: Array<Canton> = [];
   target?: Canton;
+  targetMoving?: Canton;
+  @ViewChild('nb_puissance', {static: true}) nbPuissance?: ElementRef;
 
   constructor(private ressourcesService: RessourcesService, private jeuService: JeuService) { 
     this.jeuService.currentPlayer.subscribe((value) => {
@@ -41,6 +45,10 @@ export class DetailsComponent {
       if (value) {
         this.prepareWar();
       }
+    });
+
+    this.jeuService.moving.subscribe((value) => {
+      this.moving = value;
     });
   }
 
@@ -71,7 +79,19 @@ export class DetailsComponent {
   }
 
   deplacer() {
-    alert('Déplacement !');
+    this.voisinsAlliers = [];
+    let voisins = this.canton!.voisins;
+    if (voisins != undefined) {
+      voisins.forEach((id) => {
+        let voisin = this.jeuService.getCantonById(id);
+
+        if (voisin != undefined && voisin.proprio != this.jeuService.getCurrentPlayer()) {
+          this.voisinsAlliers.push(voisin!);
+        }
+      });
+    }
+
+    this.jeuService.setMoving();
   }
 
   // LES MENUS ACTIONS
@@ -166,6 +186,7 @@ export class DetailsComponent {
 
   fermer() {
     this.jeuService.setPeace();
+    this.jeuService.removeMoving();
     this.voisinsEnnemis = [];
   }
 
@@ -224,5 +245,17 @@ export class DetailsComponent {
     this.jeuService.setCantonColor();
     this.target = undefined;
     this.jeuService.setPeace();
+  }
+
+  // ACTION DEPLACER
+  movingTarget(id: number) {
+    this.targetMoving = this.jeuService.getCantonById(id);
+  }
+
+  deplacement() {
+    alert(this.nbPuissance?.nativeElement.value);
+    let puissance = Number(this.nbPuissance?.nativeElement.value);
+    this.canton!.puissance! -= puissance;
+    this.targetMoving!.puissance! += puissance;
   }
 }
