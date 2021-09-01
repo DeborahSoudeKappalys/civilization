@@ -58,9 +58,10 @@
 <app-details *ngIf="selectedCanton != 999"></app-details>
 
 <div *ngIf="isFinish != 99" class="bandeau-fin">
+  <img src="../../assets/winner.svg" alt="">
   <h1> {{ winner!.nom! }} </h1>
   <h2> a gagné la partie en </h2>
-  <h3> {{ turn }} tours </h3>
+  <h2> {{ turn }} tours </h2>
 </div>
 
 <div *ngIf="nextPlayer" class="bandeau-next-player">
