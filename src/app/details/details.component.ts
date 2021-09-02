@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, NgModule } from '@angular/core';
 import { Canton } from '../classes/canton';
 import { RessourcesService } from '../services/ressources.service';
 import { Ressources } from '../classes/ressources';
@@ -9,6 +9,7 @@ import { JeuService } from '../jeu.service';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
+
 export class DetailsComponent {
   canton?: Canton;
   selectedRessource?: Ressources;
@@ -24,7 +25,7 @@ export class DetailsComponent {
   voisinsAlliers: Array<Canton> = [];
   target?: Canton;
   targetMoving?: Canton;
-  @ViewChild('nb_puissance', {static: true}) nbPuissance?: ElementRef;
+  nbPuissance?: number;
 
   constructor(private ressourcesService: RessourcesService, private jeuService: JeuService) { 
     this.jeuService.currentPlayer.subscribe((value) => {
@@ -91,12 +92,13 @@ export class DetailsComponent {
       voisins.forEach((id) => {
         let voisin = this.jeuService.getCantonById(id);
 
-        if (voisin != undefined && voisin.proprio != this.jeuService.getCurrentPlayer()) {
+        if (voisin != undefined && voisin.proprio == this.jeuService.getCurrentPlayer()) {
           this.voisinsAlliers.push(voisin!);
         }
       });
     }
 
+    console.log(this.voisinsAlliers);
     this.jeuService.setMoving();
   }
 
@@ -268,9 +270,11 @@ export class DetailsComponent {
   }
 
   deplacement() {
-    alert(this.nbPuissance?.nativeElement.value);
-    let puissance = Number(this.nbPuissance?.nativeElement.value);
-    this.canton!.puissance! -= puissance;
-    this.targetMoving!.puissance! += puissance;
+    let puissance = this.nbPuissance;
+
+    if (typeof puissance != 'undefined') {
+      this.canton!.puissance! -= puissance;
+      this.targetMoving!.puissance! += puissance;
+    }
   }
 }

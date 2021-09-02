@@ -65,7 +65,7 @@
         <h3> Nombre d'unité à déplacer </h3>
         <p> {{ canton.puissance! === 2 ? '(1 maximum)' :  'Entre 1 et ' + (canton.puissance! - 1) }} </p>
 
-        <input type="number" #nb_puissance>
+        <input type="number" [(ngModel)]="nbPuissance">
 
         <div class="buttons">
             <button (click)="fermer()"> Quitter </button>

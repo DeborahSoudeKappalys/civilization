@@ -7,7 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { DetailsComponent } from './details/details.component';
 import { MapComponent } from './map/map.component';
 import { InitPlayerComponent } from './init-player/init-player.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GameComponent } from './game/game.component';
 
 @NgModule({
@@ -22,7 +22,8 @@ import { GameComponent } from './game/game.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
