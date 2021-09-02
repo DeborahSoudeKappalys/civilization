@@ -64,7 +64,33 @@
   <h2> {{ turn }} tours </h2>
 </div>
 
+<div *ngIf="finishWar === 1" class="bandeau-fin-de-guerre">
+  <div *ngIf="winnerWar == true">
+    <img src="../../assets/winner.svg" alt="">
+    <h1> Repos soldat ! L'attaque est terminée ! </h1>
+    <h2> Vous avez gagné cette bataille ! </h2>
+  </div>
+
+  <div *ngIf="winnerWar == false">
+    <img src="../../assets/death.svg" alt="">
+    <h1> Repos soldat ! L'attaque est terminée ! </h1>
+    <h2> Vous n'avez pas gagné cette bataille, mais vous pouvez encore gagner la guerre ! </h2>
+  </div>
+</div>
+
 <div *ngIf="nextPlayer" class="bandeau-next-player">
   <h2> Au tour de </h2>
   <h1> {{ getCurrentPlayer().nom }} {{ getCurrentPlayer().titre }} </h1>
+</div>
+
+<div *ngIf="patienter" class="bandeau-next-player">
+  <h2> Votre patience a payée, vous avez cumulé </h2>
+  <p> 
+    {{ getCurrentPlayerRessources()[0]}} <img src="../../assets/pictogrammes/corn.svg" alt="">
+    {{ getCurrentPlayerRessources()[1]}} <img src="../../assets/pictogrammes/fish.svg" alt="">
+    {{ getCurrentPlayerRessources()[2]}} <img src="../../assets/pictogrammes/wood.svg" alt="">
+    {{ getCurrentPlayerRessources()[3]}} <img src="../../assets/pictogrammes/stone.svg" alt="">
+    {{ getCurrentPlayerRessources()[4]}} <img src="../../assets/pictogrammes/silk.svg" alt="">
+    {{ getCurrentPlayerRessources()[5]}} <img src="../../assets/pictogrammes/coin.svg" alt="">
+  </p>
 </div>

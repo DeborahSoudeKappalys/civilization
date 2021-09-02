@@ -240,12 +240,18 @@ export class DetailsComponent {
       // On le supprime du perdant
       this.jeuService.joueurs[this.jeuService.otherPlayer.value].removeCanton(this.target!.id!);
 
+      this.jeuService.winnerWar = true
+
       // S'il y a un échec de l'attaque
     } else {
       this.canton!.puissance = 1;
       this.target!.puissance = 1;
+
+      this.jeuService.winnerWar = false
+
     }
 
+    this.jeuService.finishWar.next(1);
     this.jeuService.setCantonColor();
     this.target = undefined;
     this.jeuService.setPeace();
