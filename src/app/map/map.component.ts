@@ -21,7 +21,7 @@ export class MapComponent implements AfterViewInit {
   nextPlayer: Boolean = false;
   patienter: Boolean = false;
   finishWar?: number;
-  winnerWar = this.jeuService.winnerWar;
+  winnerWar?: number;
 
   panzoom?: PanZoom;
 
@@ -41,6 +41,10 @@ export class MapComponent implements AfterViewInit {
 
     this.jeuService.finishWar.subscribe((value) => {
       this.finishWar = value;
+    });
+
+    this.jeuService.winnerWar.subscribe((value) => {
+      this.winnerWar = value;
     });
 
     this.jeuService.isFinish.subscribe((value) => {
@@ -72,7 +76,23 @@ export class MapComponent implements AfterViewInit {
     this.nextPlayer = true;
     setTimeout(() => { 
       this.nextPlayer = false;
+
+      if(this.currentPlayer == 0 && this.jeuService.endRoundJ1 == true) {
+        this.showWaitPopUp();
+        this.jeuService.endRoundJ1 = false;
+      } else if (this.currentPlayer == 1 && this.jeuService.endRoundJ2 == true) {
+        this.showWaitPopUp();
+        this.jeuService.endRoundJ2 = false;
+      }
     }, 1500);
+  }
+
+  showWaitPopUp() {
+    this.patienter = true;
+
+    setTimeout(() => { 
+      this.patienter = false;
+    }, 2500);
   }
 
   getCurrentPlayer() {
@@ -90,5 +110,16 @@ export class MapComponent implements AfterViewInit {
     this.jeuService.colorizeAllCantons();
     this.jeuService.setCantonColor();
     this.jeuService.resetSelectedCanton();
+  }
+
+  getCurrentPlayerRessources() {
+    return [
+      this.jeuService.joueurs[this.currentPlayer].getRessourceById(1),
+      this.jeuService.joueurs[this.currentPlayer].getRessourceById(2),
+      this.jeuService.joueurs[this.currentPlayer].getRessourceById(3),
+      this.jeuService.joueurs[this.currentPlayer].getRessourceById(4),
+      this.jeuService.joueurs[this.currentPlayer].getRessourceById(5),
+      this.jeuService.joueurs[this.currentPlayer].getRessourceById(6),
+    ]
   }
 }

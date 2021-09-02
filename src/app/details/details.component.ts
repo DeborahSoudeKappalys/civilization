@@ -61,6 +61,12 @@ export class DetailsComponent {
   }
 
   patienter() {
+    if (this.current == 0) {
+      this.jeuService.endRoundJ1 = true;
+    } else if (this.current == 1) {
+      this.jeuService.endRoundJ2 = true;
+    }
+
     this.jeuService.addNewRessources();
     this.setStartMenu();
     this.jeuService.nextCurrentPlayer();
@@ -240,15 +246,14 @@ export class DetailsComponent {
       // On le supprime du perdant
       this.jeuService.joueurs[this.jeuService.otherPlayer.value].removeCanton(this.target!.id!);
 
-      this.jeuService.winnerWar = true
+      this.jeuService.winnerWar.next(1);
 
       // S'il y a un échec de l'attaque
     } else {
       this.canton!.puissance = 1;
       this.target!.puissance = 1;
 
-      this.jeuService.winnerWar = false
-
+      this.jeuService.winnerWar.next(0);
     }
 
     this.jeuService.finishWar.next(1);
