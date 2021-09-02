@@ -25,7 +25,7 @@ export class JeuService {
   selectedCanton = new BehaviorSubject(0);
   
   finishWar = new BehaviorSubject(0);
-  winnerWar: Boolean = false;
+  winnerWar = new BehaviorSubject(0);
 
   constructor() { 
     this.currentPlayer.next(0);

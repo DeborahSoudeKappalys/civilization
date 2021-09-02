@@ -21,7 +21,7 @@ export class MapComponent implements AfterViewInit {
   nextPlayer: Boolean = false;
   patienter: Boolean = false;
   finishWar?: number;
-  winnerWar = this.jeuService.winnerWar;
+  winnerWar?: number;
 
   panzoom?: PanZoom;
 
@@ -41,6 +41,10 @@ export class MapComponent implements AfterViewInit {
 
     this.jeuService.finishWar.subscribe((value) => {
       this.finishWar = value;
+    });
+
+    this.jeuService.winnerWar.subscribe((value) => {
+      this.winnerWar = value;
     });
 
     this.jeuService.isFinish.subscribe((value) => {

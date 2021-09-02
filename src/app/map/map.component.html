@@ -65,13 +65,13 @@
 </div>
 
 <div *ngIf="finishWar === 1" class="bandeau-fin-de-guerre">
-  <div *ngIf="winnerWar == true">
+  <div *ngIf="winnerWar  === 1">
     <img src="../../assets/winner.svg" alt="">
     <h1> Repos soldat ! L'attaque est terminée ! </h1>
     <h2> Vous avez gagné cette bataille ! </h2>
   </div>
 
-  <div *ngIf="winnerWar == false">
+  <div *ngIf="winnerWar  === 0">
     <img src="../../assets/death.svg" alt="">
     <h1> Repos soldat ! L'attaque est terminée ! </h1>
     <h2> Vous n'avez pas gagné cette bataille, mais vous pouvez encore gagner la guerre ! </h2>
