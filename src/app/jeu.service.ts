@@ -21,7 +21,9 @@ export class JeuService {
   launched: Boolean = false;
   canton?: Canton;
   selectedCanton = new BehaviorSubject(0);
-
+  
+  finishWar = new BehaviorSubject(0);
+  winnerWar: Boolean = false;
 
   constructor() { 
     this.currentPlayer.next(0);
@@ -213,6 +215,12 @@ export class JeuService {
   }
 
   setCantonColor() {
+    if(this.finishWar.value == 1) {
+      setTimeout(() => { 
+        this.finishWar.next(0);
+      },3500);
+    }
+
     this.getPlayers().forEach(joueur => {
       joueur.cantons.forEach(canton => {
         let element = document.getElementById('76_' + canton.id);

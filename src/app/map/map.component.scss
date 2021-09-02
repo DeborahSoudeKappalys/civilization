@@ -46,6 +46,37 @@
     }
 }
 
+.bandeau-fin-de-guerre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-8cm, -4.5cm);
+    height: 9cm;
+    width: 16cm;
+    background-image: url("../../assets/gameUiEnd.svg");
+    text-align: center;
+
+    img {
+        max-width: 7rem;
+        width: 100%;
+        margin-top: 3rem;
+    }
+
+    h1 {
+        font-family: "Almendra SC", serif;
+        text-align: center;
+        color: #faca83;
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 1rem;
+        text-align: center;
+        color: #faca83;
+        margin: 0;
+    }
+}
+
 .bandeau-next-player {
     position: absolute;
     top: 50%;
