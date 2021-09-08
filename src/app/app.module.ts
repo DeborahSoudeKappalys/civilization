@@ -9,6 +9,7 @@ import { MapComponent } from './map/map.component';
 import { InitPlayerComponent } from './init-player/init-player.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GameComponent } from './game/game.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GameComponent } from './game/game.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
