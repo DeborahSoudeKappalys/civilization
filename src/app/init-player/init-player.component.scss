@@ -5,6 +5,28 @@ div.overlay {
     position: inherit;
 }
 
+nav {
+    background-color: #d2a96a;
+
+    .navbar-brand{
+        width: 50%;
+
+        img{
+            max-width: 180px;
+        }
+    }
+    ul {
+        a {
+            color: #3b3a3b;
+            font-weight: 600;
+
+            &:hover {
+                color: #4D5B5B;
+            }
+        }
+    }
+}
+
 section.initPlayer {
     position: absolute;
     top: 10%;
@@ -18,7 +40,7 @@ section.initPlayer {
         text-align: center;
         font-family: sans-serif;
         color: #d2a96a;
-    
+
 
         h1 {
             font-family: 'Almendra SC', serif;
@@ -28,7 +50,7 @@ section.initPlayer {
         input {
             background-color: #d2a96a;
             border: 1px solid #a37f4f;
-            outline: none; 
+            outline: none;
             padding: 8px 1rem;
         }
 
@@ -82,7 +104,7 @@ section.initPlayer {
                     background-color: #b39059 ;
                     border: 1px solid #f7f7f7;
                 }
-                
+
             }
 
         }
