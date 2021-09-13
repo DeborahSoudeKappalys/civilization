@@ -45,6 +45,33 @@ export class InitPlayerComponent {
   }
 
   createPlayer() {
+    const axios = require('axios');
+    const api = axios.create({
+      baseURL: "http://127.0.0.1:8000",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+
+    let params = new URLSearchParams();
+    params.append('name', this.nom.value);
+    params.append('title', this.titre.value);
+    params.append('color', this.couleur);
+    //params.append('county', this.canton);
+
+    api.post('/players', params)
+    .then(function (response: any) {
+      console.log(response);
+      let { data } = response;
+      data.forEach((item: string) => {
+        console.log(item);
+      });
+    })
+    .catch(function (error: any) {
+      console.log(error.message);
+    });
+
     // Assignation Joueur/Canton et Canton/Joueur
     this.setCanton(this.cantonId, this.numberOfPlayers);
 
