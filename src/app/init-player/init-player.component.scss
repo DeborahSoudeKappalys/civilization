@@ -28,23 +28,27 @@ nav {
 }
 
 section.initPlayer {
-    position: absolute;
-    top: 10%;
-    z-index: 2;
-    left: 35%;
+    background-image: url('../../assets/gameUiMenu.svg');
+    background-size: cover;
+    max-width: calc(350px + 10rem);
+    padding: 6rem 2rem;
+    margin: 3rem auto;
+
 
     .content {
-        position: absolute;
-        top: 20%;
-        left: 20%;
         text-align: center;
         font-family: sans-serif;
         color: #d2a96a;
-
+        margin: 5rem auto 0;
+        max-width: 300px;
 
         h1 {
             font-family: 'Almendra SC', serif;
-            font-size: 2.5rem;
+            font-size: 20px;
+        }
+
+        p {
+            margin: 16px 0 8px;
         }
 
         input {
