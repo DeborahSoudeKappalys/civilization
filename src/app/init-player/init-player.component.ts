@@ -22,7 +22,7 @@ export class InitPlayerComponent {
   player1Color?: string;
   player1Canton?: number;
 
-  constructor(private cantonsService: CantonsService, private jeuService: JeuService, private router: Router) { 
+  constructor(private cantonsService: CantonsService, private jeuService: JeuService, private router: Router) {
     this.jeuService.numberOfPlayers.subscribe((value) => {
       this.numberOfPlayers = value;
     });
@@ -58,7 +58,7 @@ export class InitPlayerComponent {
     params.append('name', this.nom.value);
     params.append('title', this.titre.value);
     params.append('color', this.couleur);
-    //params.append('county', this.canton);
+    params.append('county', this.cantonId.toString());
 
     api.post('/players', params)
     .then(function (response: any) {
